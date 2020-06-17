@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Login</title>
+</head>
+<body>
+  <style>
+    body {
+    font-family: sans-serif;
+    /* background-image: linear-gradient(to right top, #b0b9dd, #c09dcb, #d27ea0, #cf6863, #ad651f); */
+    background-image: linear-gradient(to right top, #b0b9dd, #d2aedc, #f7a0c1, #ff9c91, #f6a85d);
+    }
+
+  #left_box {
+    box-sizing: border-box;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.24);
+    padding: 0px;
+    background-color: #dc237f;
+    }
+
+    .loginbox {
+    background-color: white;
+    /* border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px; */
+    }
+
+    input {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 5%;
+    margin-bottom: 7%;
+    background: none;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border: none;
+    border-bottom: 2px solid #222222;
+    outline: none;
+    color: #000;
+    transition-timing-function: ease-in;
+    transition: border-bottom 1s;
+    position: relative;
+    }
+
+    input:focus,
+    input:valid {
+    transition-delay: 0.1s;
+    border-bottom: 2px solid #bd4879;
+    top: 25%;
+
+    }
+
+    label {
+    margin-left: 15%;
+    position: absolute;
+    top: 30%;
+    letter-spacing: 2px;
+
+
+    }
+
+    .heading-loginbox {
+    background: -webkit-linear-gradient(#1d2b64, #70afe6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 38px;
+    text-align: center;
+    margin-top: 8%;
+    letter-spacing: 2px;
+    }
+
+    .btn-login {
+    width: 70%;
+    color: blanchedalmond;
+    margin-left: 15%;
+    margin-bottom: 15%;
+    margin-top: 10%;
+    padding: 2.5% 0 2.5% 0;
+    background-image: linear-gradient(to right, #1d2b64, #2a568d, #4484b2, #6bb3d5, #9ce2f6);
+    border-radius: 18px;
+    border: 1px solid #111111;
+    letter-spacing: 3px;
+    transition: all 0.5s;
+    transition-timing-function: ease-out;
+
+    }
+
+    .btn-login:hover {
+    background-image: linear-gradient(to right, #4b66cf, #735ed0, #9753cb, #b642c1, #d22ab2);
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    box-shadow: 5px 10px 25px #37516d;
+
+
+    }
+  </style>
+  <div class="loginbox" ng-controller="logController">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+        <h2 class="heading-loginbox"> <strong>User </strong> LogIn</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 inpt">
+        <label for="patient">Email</label>
+        <input type="text" class="email" id="username" onkeyup="validateUsername()" ng-model="email" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 inpt">
+        <label for="username">Password</label>
+        <input type="password" class="password" id="password" onkeyup="validatePassword()" ng-model="password" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
+      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
+        <button class="btn-login" onclick="validateFields()" ng-click="postpatientdata(email,password)">LogIn</button>
+      </div>
+      <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
+    </div>
+    <br><br>
+    <!-- <table>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>last name</th>
+          <th>email</th>
+          <th>age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+          ng-repeat="employee in employees"
+          <td>{{employees.data[0].first_name}}</td>
+          <td>{{employees.data[0].last_name}}</td>
+          <td>{{employees.data[0].email}}</td>
+          <td>{{employees.data.age}}</td>
+        </tr>
+      </tbody>
+    </table> -->
+  </div>
+</body>
+</html>

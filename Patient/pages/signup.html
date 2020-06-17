@@ -1,0 +1,226 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body > 
+  <style >
+    .login-box{
+      background-color: #ffffff;
+    }
+    .left-box{
+    padding: 0px;
+    background-color: #36b099;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    }
+    .heading-loginbox{
+      text-align: center;
+      padding: 3% 0px;
+    }
+    input{
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    background: white;
+    text-align: center;
+    padding: 2.5% 0px;
+    border: 1px solid #ffffff;
+    border-bottom: 1px solid grey;
+    transition: all 0.7s;
+    transition-timing-function: ease;
+    outline: none;
+    border-radius: 15px;
+
+    }
+    input:focus,input:valid{
+      border: 1px solid skyblue ;
+      outline: none;
+    }
+    .cb{
+    text-align: center;
+    font-size: 110%;
+    font-style:normal;
+    font-family: arial;
+    padding-top: 5%;
+    color: #77120c;
+    width: 100%;
+    padding: 3% 2%;
+    }
+    select{
+      width: 80%;
+      margin-left: 10%;
+      padding: 2% 0px;
+    }
+    .lb{
+    text-align: center;
+    font-size: 110%;
+    font-style:normal;
+    font-family: arial;
+    padding-top: 1%;
+    color: black;
+    }
+    .login-btn {
+    width: 60%;
+    color: blanchedalmond;
+    margin-left: 20%;
+    margin-bottom: 15%;
+    margin-top: 10%;
+    padding: 2.5% 0 2.5% 0;
+    background-image: linear-gradient(to right, #1d2b64, #2a568d, #4484b2, #6bb3d5, #9ce2f6);
+    border-radius: 18px;
+    border: 1px solid #111111;
+    letter-spacing: 3px;
+    transition: all 0.5s;
+    transition-timing-function: ease-out;
+
+    }
+
+    .login-btn:hover {
+    background-image: linear-gradient(to right, #4b66cf, #735ed0, #9753cb, #b642c1, #d22ab2);
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    box-shadow: 5px 10px 25px #37516d;
+
+
+    }
+  </style>
+    <div class="login-box" ng-controller="registrationController">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <h2 class="heading-loginbox">User Registeration</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+          <label for="firstname">First Name:</label><br>
+          <input id="first_name" type="text" name="firstname" placeholder="Enter First Name"
+            onkeyup="validateName('first_name','firstnameerror')" ng-model="firstname" required>
+          <span class="error" id="firstnameerror" style="color:red"></span>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+          <label for="lastname">Last Name:</label><br>
+          <input id="last_name" type="text" name="lastname" placeholder="Enter Last Name"
+            onkeyup="validateName('last_name','lastnameerror')" ng-model="lastname" required>
+          <span class="error" id="lastnameerror" style="color:red"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+          <label for="name">Mobile Number:</label><br>
+          <input id="mobile_number" type="number" name="mobilenumber" placeholder="Enter Mobile No."
+            onkeyup="validateNumber('mobile_number','mobilenumbererror')" ng-model="mobilenumber" required>
+          <span class="error" id="mobilenumbererror" style="color:red"></span>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+          <label for="email">Email:</label><br>
+          <input id="email" type="text" name="email" placeholder="Enter Your Email"
+            onkeyup="validateEmail('email','emailerror')" ng-model="email" required>
+            <span class="error" id="emailerror" style="color:red"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb">
+          <input type="file" class="profile-pic" id="profile_pic" accept="image/*" name="prile-pic">
+            <span class="error" id="profilepicerror" style="color:red"></span>
+        </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb lb">
+            <select name='gender' id="gender" onchange="validateGender('gender','gendererror')" ng-model="gender">
+              <option>Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+              <span class="error" id="gendererror" style="color:red"></span>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+          <label for="password">Password:</label><br>
+          <input id="password" type="password" name="password" placeholder="Enter Your Password"
+            onkeyup="validatePassword('password','passworderror')" ng-model="password" required>
+          <span class="error" id="passworderror" style="color:red"></span>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 lb">
+          <label for="cnfpassword">Confirm Password:</label><br>
+          <input id="cnfpassword" type="password" name="cnfpassword" placeholder="Re-Enter Your Password"
+            onkeyup="validateCnfPassword('cnfpassword','cnfpassworderror')" required>
+          <span class="error" id="cnfpassworderror" style="color:red"></span>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb">
+            <select id="age" class="age" name="age" onchange="validateAge('age','ageerror')" ng-model="age">
+              <option >Your Age</option>
+              <option >1</option>
+              <option >2</option>
+              <option >3</option>
+              <option >4</option>
+              <option >5</option>
+              <option >6</option>
+              <option >7</option>
+              <option >8</option>
+              <option >9</option>
+              <option >10</option>
+              <option >11</option>
+              <option >12</option>
+              <option >13</option>
+              <option >14</option>
+              <option >15</option>
+              <option >16</option>
+              <option >17</option>
+              <option >18</option>
+            </select>
+          <span class="error" id="ageerror" style="color:red"></span>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb">
+            <select name='blood-group' id="blood_group" onchange="validateBloodGroup('blood_group','bloodgrouperror')" ng-model="bloodgroup">
+              <option>Blood Group</option>
+              <option>O-</option>
+              <option>B-</option>
+              <option>A-</option>
+              <option>AB-</option>
+              <option>O+</option>
+              <option>B+</option>
+              <option>A+</option>
+              <option>AB+</option>
+          </select>
+          <span class="error" id="bloodgrouperror" style="color:red"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb">
+            <select name='height' id="height" onchange="validateHeight('height','heighterror')" ng-model="height">
+              <option>Your Height</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+          </select>
+          <span class="error" id="heighterror" style="color:red"></span>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb">
+            <select name='weight' id="weight" onchange="validateWeight('weight','weighterror')" ng-model="weight">
+              <option>Your Weight</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+          </select>
+          <span class="error" id="weighterror" style="color:red"></span>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3"></div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+          <button class="login-btn" id="login_btn" onclick="onSubmit()" ng-click="postdata(firstname,lastname,mobilenumber,email,gender,password,age,bloodgroup,height,weight)" >LogIn</button>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3"></div>
+      </div>
+    </div>
+</body>
+</html>

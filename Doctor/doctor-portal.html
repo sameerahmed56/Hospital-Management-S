@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- <script src="cdn/angular.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.js"></script>
+    <script src="cdn/angular-ui-router.min.js"></script>
+    <script src="doctor-portal.js"></script>
+    <title>Doctor Portal</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: ;
+        }
+
+        .wrap-box {
+            background-color: #f5f5f5;
+            height: 100vh;
+            margin-left: 22vh;
+        }
+
+        .sidenav-box {
+            background-color: #0a586c;
+            height: 100vh;
+            position: fixed;
+            width: 20vh;
+            text-align: center;
+        }
+        .sidenav-box> a{
+            color: #7aa4ae;
+        }
+        #plus_symbol{
+            color: #7aa4ae;
+            text-align: center;
+            font-size: 50px;
+            padding: 50px 50px 0px 50px;
+        }
+    </style>
+    <div ng-app="myApp">
+
+        <div class="sidenav-box">
+            <i class="fa fa-plus-square" id="plus_symbol" aria-hidden="true"></i> <br>
+            <br>
+            <a ui-sref="signupmessage({e:11, f:10})"><strong>Dashboard</strong></a> <br><br>
+            <a ui-sref="loginmessage({a:10, b:10})"><strong>All Patients</strong></a>
+        </div>
+        <div class="wrap-box">
+            <div class="ui-view">
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
