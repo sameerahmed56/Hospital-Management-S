@@ -28,7 +28,6 @@
 </head>
 
 <body>
-    <script src="pages-manager/patients-list.js"></script>
     <style>
         body {
             background-color: #eaf2f3;
@@ -36,17 +35,17 @@
             letter-spacing: 1px;
         }
 
-        .patients-list-box {
+        .notification-box {
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-            height: 100vh;
+            min-height: 100vh;
             border-radius: 20px;
             text-align: left;
             padding: 1% 0px 5% 6%;
-            margin: 0px 0px 3% 0%;
+            margin: 1% 2% 0% 0%;
         }
 
-        .patients-list-heading {
+        .notification-heading {
             /* font-size: 35px; */
             letter-spacing: 2px;
             color: #1598a5;
@@ -54,65 +53,48 @@
             /* padding: 0% 0px 0% 6%; */
         }
 
-        .right-box-list {
-            background-color: #ffffff;
-            box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-            height: 100vh;
-            border-radius: 20px;
-            text-align: left;
-            padding: 3% 0px 5% 6%;
-            margin: 0% 0px 3% 0%;
+        table {
+            border: 2px solid #212456;
         }
 
-        .right-box-heading {
-            letter-spacing: 2px;
-            color: #1598a5;
-            text-align: left;
-            padding: 3% 0px 0% 6%;
+        tr,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: collapse;
+            font-size: 24px;
+            padding: 0.8%;
+            text-align: center;
+            width: auto;
         }
-        table{
-        border: 2px solid #212456;
-        }
-        tr,td,th{
-        border: 1px solid black;
-        border-collapse: collapse;
-        font-size: 24px;
-        padding: 0.8%;
-        text-align: center;
-        width: auto;
-        }
-        tr:hover{
-        background-color: #8be7de;
+
+        tr:hover {
+            background-color: #8be7de;
         }
     </style>
-    <div class="container-fluid" ng-controller="patientListDisplayController">
+    <div class="container-fluid" ng-controller="notificationController">
         <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 patients-list-box">
-                <h1 class="patients-list-heading">All patients:{{HIIII}}</h1>
-                <div class="patients-list">
-                    <!-- <button id="btn" value="HEY">CHECK</button> -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 notification-box">
+                <h1 class="notification-heading">Notification:</h1>
+                <div class="notification">
                     <table>
                         <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Mobile Number</th>
-                            <th>View Details</th>
+                            <th>Name{{hhjhjhjhj}}</th>
+                            <th>Experience</th>
+                            <th>Qualification</th>
+                            <th>Accept Doctor</th>
                         </tr>
                         <tr ng-repeat="data in datas">
                             <td>{{data.first_name}} {{data.last_name}}</td>
-                            <td>{{data.age}}</td>
-                            <td>{{data.mobile_number}}</td>
-                            <td><button class="btn-class" value="{{data.email}}">View Details</button></td>
+                            <td>{{data.previous_exp}}</td>
+                            <td>{{data.qualification}}</td>
+                            <td><button class="btn-class" value="{{data.email}}">Accept</button></td>
                         </tr>
                     </table>
-                    <div id="outPatientEmail"></div>
                 </div>
-            </div>
+            </di>
         </div>
     </div>
-    <script>
-
-    </script>
 </body>
 
 </html>

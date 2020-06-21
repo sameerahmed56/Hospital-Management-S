@@ -13,19 +13,23 @@
     <script src="cdn/angular-ui-router.min.js"></script>
     <script src="patient-portal.js"></script>
     <!-- <script src="pages/patient-dashboard.js"></script> -->
+    <script src="pages/fix-appointment.js"></script>
+
     <title>Dashboard</title>
 </head>
 
 <body>
     <style>
-        body {
-            background-color:#089bab;
+        html,body {
+            background-color:#ffffff;
+            width: auto;
         }
 
         .wrap-box {
             background-color: #f5f5f5;
-            height: 100vh;
+            height: auto;
             margin-left: 22vh;
+            width: auto;
         }
 
         .sidenav-box {
@@ -35,11 +39,14 @@
             border-bottom-right-radius: 33px;
             position: fixed;
             text-align: center;
-
             width: 20vh;
         }
         .sidenav-box>a{
             color: #ffffff;
+        }
+        .sidenav-box>a>i{
+            color: #ffffff;
+            font-size: 35px;
         }
         #plus_symbol{
         color: #71dce6;
@@ -49,19 +56,27 @@
         }
     </style>
     <div ng-app="myApp">
-        
+
             <div class="sidenav-box">
             <i class="fa fa-plus-square" id="plus_symbol" aria-hidden="true"></i> <br> <br>
-                <a ui-sref="signupmessage({e:11, f:10})"><strong>Dashboard</strong></a> <br><br>
-                <a ui-sref="loginmessage({a:10, b:10})"><strong>All Doctors</strong></a><br><br>
-                <a ui-sref="appointmentmessage({g:11, h:10})"><strong>appointment</strong></a>
+                <a ui-sref="signupmessage({e:11, f:10})">
+                        <i class="fa fa-user" aria-hidden="true"></i> <br>
+                    <strong>Dashboard</strong></a> <br><br>
+                <a ui-sref="loginmessage({a:10, b:10})"><strong>Medical History</strong></a><br><br>
+                <a ui-sref="appointmentmessage({g:11, h:10})">
+                        <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> <br>
+                    <strong>Appointment</strong></a><br><br>
+                <a ui-sref="notificationmessage({c:16, d:10})">
+                        <i class="fa fa-bell-o" aria-hidden="true"></i> <br>
+                    <strong>Notification</strong></a>
+
             </div>
             <div class="wrap-box">
                 <div class="ui-view">
-                    
+
                 </div>
             </div>
-        
+
     </div>
 </body>
 

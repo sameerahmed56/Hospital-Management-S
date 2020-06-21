@@ -70,22 +70,27 @@
             text-align: left;
             padding: 3% 0px 0% 6%;
         }
-        table{
-        border: 2px solid #212456;
+
+        table {
+            border: 2px solid #212456;
         }
-        tr,td,th{
-        border: 1px solid black;
-        border-collapse: collapse;
-        font-size: 24px;
-        padding: 0.8%;
-        text-align: center;
-        width: auto;
+
+        tr,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: collapse;
+            font-size: 24px;
+            padding: 0.8%;
+            text-align: center;
+            width: auto;
         }
-        tr:hover{
-        background-color: #8be7de;
+
+        tr:hover {
+            background-color: #8be7de;
         }
     </style>
-    <div class="container-fluid" ng-controller="patientListDisplayController">
+    <div class="container-fluid" ng-controller="patientListController">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 patients-list-box">
                 <h1 class="patients-list-heading">All patients:{{HIIII}}</h1>

@@ -35,17 +35,17 @@
             letter-spacing: 1px;
         }
 
-        .doctors-list-box {
+        .doctors-approval-list-box {
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-            height: 100vh;
+            height: auto;
             border-radius: 20px;
             text-align: left;
             padding: 1% 0px 5% 6%;
             margin: 0px 0px 3% 0%;
         }
 
-        .doctors-list-heading {
+        .doctors-approval-list-heading {
             /* font-size: 35px; */
             letter-spacing: 2px;
             color: #1598a5;
@@ -53,7 +53,7 @@
             /* padding: 0% 0px 0% 6%; */
         }
 
-        .right-box-list {
+        .right-box-approval-list {
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
             height: 100vh;
@@ -69,17 +69,50 @@
             text-align: left;
             padding: 3% 0px 0% 6%;
         }
+        table{
+        border: 2px solid #212456;
+        }
+        tr,td,th{
+        border: 1px solid black;
+        border-collapse: collapse;
+        font-size: 24px;
+        padding: 0.8%;
+        text-align: center;
+        width: auto;
+        }
+        tr:hover{
+        background-color: #8be7de;
+        }
     </style>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="doctorApprovalDisplayController">
         <div class="row">
-            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 doctors-list-box">
-                <h1 class="doctors-list-heading">Doctors Aprooval List:</h1>
-                <div class="doctors-list">
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 doctors-approval-list-box">
+                <h1 class="doctors-approval-list-heading">Doctors Aprooval List:</h1>
+                <div class="doctors-approval-list">
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Experience</th>
+                            <th>Qualification</th>
+                            <th>Accept Doctor</th>
+                            <th>Reject Doctor</th>
+                        </tr>
+                        <tr ng-repeat="data in datas">
+                            <td>{{data.first_name}} {{data.last_name}}</td>
+                            <td>{{data.previous_exp}}</td>
+                            <td>{{data.qualification}}</td>
+                            <td><button class="btn-class" value="{{data.email}}"
+                                    ng-click="approveregistration()" onclick="getEmail(value)">{{data.email}}Accept</button></td>
+                            <td><button class="btn-class" value="{{data.email}}"
+                                    ng-click="rejectregistration()" class="btn" onclick="getEmail(value)">Reject</button></td>
+                        </tr>
+                    </table>
+                    <div id="outEmail"></div>
                 </div>
             </div>
             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 right-box">
                 <h4 class="right-box-heading">Notification:</h4>
-                <div class="right-box-list"></div>
+                <div class="right-box-approval-list"></div>
             </div>
         </div>
     </div>

@@ -25,10 +25,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
     <title>Dashboard</title>
+    <script src="modify-appointment.js"></script>
 </head>
 
 <body>
-    <script src="pages-manager/patients-list.js"></script>
     <style>
         body {
             background-color: #eaf2f3;
@@ -36,7 +36,7 @@
             letter-spacing: 1px;
         }
 
-        .patients-list-box {
+        .modify-appointment-box {
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
             height: 100vh;
@@ -46,7 +46,7 @@
             margin: 0px 0px 3% 0%;
         }
 
-        .patients-list-heading {
+        .modify-appointment-heading {
             /* font-size: 35px; */
             letter-spacing: 2px;
             color: #1598a5;
@@ -54,65 +54,26 @@
             /* padding: 0% 0px 0% 6%; */
         }
 
-        .right-box-list {
-            background-color: #ffffff;
-            box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-            height: 100vh;
-            border-radius: 20px;
-            text-align: left;
-            padding: 3% 0px 5% 6%;
-            margin: 0% 0px 3% 0%;
+        select {
+            padding: 10px;
         }
 
-        .right-box-heading {
-            letter-spacing: 2px;
-            color: #1598a5;
-            text-align: left;
-            padding: 3% 0px 0% 6%;
-        }
-        table{
-        border: 2px solid #212456;
-        }
-        tr,td,th{
-        border: 1px solid black;
-        border-collapse: collapse;
-        font-size: 24px;
-        padding: 0.8%;
-        text-align: center;
-        width: auto;
-        }
-        tr:hover{
-        background-color: #8be7de;
+        input {
+            padding: 10px;
         }
     </style>
-    <div class="container-fluid" ng-controller="patientListDisplayController">
+    <div class="container-fluid" ng-app="myApp" ng-controller="modifyAppointmentController">
         <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 patients-list-box">
-                <h1 class="patients-list-heading">All patients:{{HIIII}}</h1>
-                <div class="patients-list">
-                    <!-- <button id="btn" value="HEY">CHECK</button> -->
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Mobile Number</th>
-                            <th>View Details</th>
-                        </tr>
-                        <tr ng-repeat="data in datas">
-                            <td>{{data.first_name}} {{data.last_name}}</td>
-                            <td>{{data.age}}</td>
-                            <td>{{data.mobile_number}}</td>
-                            <td><button class="btn-class" value="{{data.email}}">View Details</button></td>
-                        </tr>
-                    </table>
-                    <div id="outPatientEmail"></div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 modify-appointment-box">
+                <h1 class="modify-appointment-heading">Modify Appointment:</h1>
+                <div class="modify-appointment"> <br> <br>
+                    <input type="date" id="date" class="date-input" value="2020-06-17" required min="2020-06-17"
+                        max="2020-07-29" pattern="\d{4}-\d{2}-\d{2}"> <br> <br>
+                    <input type="time" id="time" class="time-input">
+                    <button ng-click="modifyappointment()">Modify Appointment</button>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-
-    </script>
 </body>
-
 </html>

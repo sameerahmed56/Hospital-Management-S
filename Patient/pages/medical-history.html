@@ -28,7 +28,6 @@
 </head>
 
 <body>
-    <script src="pages-manager/patients-list.js"></script>
     <style>
         body {
             background-color: #eaf2f3;
@@ -36,8 +35,8 @@
             letter-spacing: 1px;
         }
 
-        .patients-list-box {
-            background-color: #ffffff;
+        .medical-history-list-box {
+            background-color: #eaf2f3;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
             height: 100vh;
             border-radius: 20px;
@@ -46,73 +45,60 @@
             margin: 0px 0px 3% 0%;
         }
 
-        .patients-list-heading {
+        .medical-history-list-heading {
             /* font-size: 35px; */
+            text-align: center;
             letter-spacing: 2px;
             color: #1598a5;
             text-align: left;
+            margin-bottom: 3%;
             /* padding: 0% 0px 0% 6%; */
         }
-
-        .right-box-list {
-            background-color: #ffffff;
+        .medical-history-list{
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-            height: 100vh;
-            border-radius: 20px;
+            width: 60%;
+            margin-left: 20%;
+            height: 70vh;
+            background-color: #ffffff;
+            color: #333333;
             text-align: left;
-            padding: 3% 0px 5% 6%;
-            margin: 0% 0px 3% 0%;
+            padding: 2%;
         }
-
-        .right-box-heading {
-            letter-spacing: 2px;
-            color: #1598a5;
-            text-align: left;
-            padding: 3% 0px 0% 6%;
+        .report{
+            text-align: center;
+            margin: 0% 0px 6% 0px;
         }
-        table{
-        border: 2px solid #212456;
+        .time{
+            margin-left: 70%;
         }
-        tr,td,th{
-        border: 1px solid black;
-        border-collapse: collapse;
-        font-size: 24px;
-        padding: 0.8%;
-        text-align: center;
-        width: auto;
+        .instruction{
+            margin-top: 8%;
         }
-        tr:hover{
-        background-color: #8be7de;
+        .doctor{
+            margin-top: 5%;
+            margin-left: 60%;
+        }
+        .department{
+            margin: 2% 0px 0px 60%;
         }
     </style>
-    <div class="container-fluid" ng-controller="patientListDisplayController">
+    <div class="container-fluid" ng-controller="medicalHistroyController">
         <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 patients-list-box">
-                <h1 class="patients-list-heading">All patients:{{HIIII}}</h1>
-                <div class="patients-list">
-                    <!-- <button id="btn" value="HEY">CHECK</button> -->
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Mobile Number</th>
-                            <th>View Details</th>
-                        </tr>
-                        <tr ng-repeat="data in datas">
-                            <td>{{data.first_name}} {{data.last_name}}</td>
-                            <td>{{data.age}}</td>
-                            <td>{{data.mobile_number}}</td>
-                            <td><button class="btn-class" value="{{data.email}}">View Details</button></td>
-                        </tr>
-                    </table>
-                    <div id="outPatientEmail"></div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 medical-history-list-box">
+                <h1 class="medical-history-list-heading">Medical History:</h1>
+                <div class="medical-history-list" >
+                    <h2 class="report">Report</h2>
+                    <h5 class="date">Appointment Date: {{appointment.date_for_app}} </h5>
+                    <h5 class="time">Time: {{appointment.time_for_app}}</h5>
+                    <h5 class="consultance">Consultance For: {{appointment.disease}}</h5>
+                    <h5 class="prescription">Prescription: <br>{{appointment.prescription}}</h5>
+                    <h5 class="instruction">Further Instruction: <br>{{appointment.instruction}}</h5>
+                    <h5 class="doctor">By Doctor:{{appointment.doctor}}</h5>
+                    <h5 class="department">Department:{{appointment.doctor}}</h5>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-
-    </script>
 </body>
 
 </html>

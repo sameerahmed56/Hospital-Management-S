@@ -7,17 +7,14 @@
 </head>
 <body>
   <style>
-    body {
-    font-family: sans-serif;
-    /* background-image: linear-gradient(to right top, #b0b9dd, #c09dcb, #d27ea0, #cf6863, #ad651f); */
-    background-image: linear-gradient(to right top, #b0b9dd, #d2aedc, #f7a0c1, #ff9c91, #f6a85d);
-    }
-
   #left_box {
     box-sizing: border-box;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.24);
     padding: 0px;
-    background-color: #dc237f;
+    /* background-color: #dc237f; */
+    background: url(images/12.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
     }
 
     .loginbox {
@@ -48,7 +45,6 @@
     transition-delay: 0.1s;
     border-bottom: 2px solid #bd4879;
     top: 25%;
-
     }
 
     label {
@@ -56,12 +52,10 @@
     position: absolute;
     top: 30%;
     letter-spacing: 2px;
-
-
     }
 
     .heading-loginbox {
-    background: -webkit-linear-gradient(#1d2b64, #70afe6);
+    background: -webkit-linear-gradient(#960c0c, #e670a1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 38px;
@@ -83,7 +77,6 @@
     letter-spacing: 3px;
     transition: all 0.5s;
     transition-timing-function: ease-out;
-
     }
 
     .btn-login:hover {
@@ -91,29 +84,27 @@
     color: #ffffff;
     border: 1px solid #ffffff;
     box-shadow: 5px 10px 25px #37516d;
-
-
     }
+
   </style>
   <div class="loginbox" ng-controller="logController">
     <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-        <h2 class="heading-loginbox"> <strong>User </strong> LogIn</h2>
+        <h2 class="heading-loginbox"> <strong>Patient </strong> LogIn</h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 inpt">
-        <label for="patient">Email</label>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <label for="email">Email</label>
         <input type="text" class="email" id="username" onkeyup="validateUsername()" ng-model="email" required>
       </div>
     </div>
     <div class="row">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 inpt">
-        <label for="username">Password</label>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <label for="password">Password</label>
         <input type="password" class="password" id="password" onkeyup="validatePassword()" ng-model="password" required>
       </div>
     </div>
-
     <div class="row">
       <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
@@ -122,25 +113,6 @@
       <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
     </div>
     <br><br>
-    <!-- <table>
-      <thead>
-        <tr>
-          <th>name</th>
-          <th>last name</th>
-          <th>email</th>
-          <th>age</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr >
-          ng-repeat="employee in employees"
-          <td>{{employees.data[0].first_name}}</td>
-          <td>{{employees.data[0].last_name}}</td>
-          <td>{{employees.data[0].email}}</td>
-          <td>{{employees.data.age}}</td>
-        </tr>
-      </tbody>
-    </table> -->
   </div>
 </body>
 </html>

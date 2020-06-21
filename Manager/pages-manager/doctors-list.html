@@ -27,7 +27,7 @@
     <title>Dashboard</title>
 </head>
 
-<body>
+<body onload="onLoad()">
     <script src="pages-manager/doctors-list.js"></script>
     <style>
         body {
@@ -38,7 +38,7 @@
         .doctors-list-box {
           background-color: #ffffff;
           box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-          height: 100vh;
+          height: auto;
           border-radius: 20px;
           text-align: left;
           padding: 1% 0px 5% 6%;
@@ -54,7 +54,7 @@
         .right-box-list{
            background-color: #ffffff;
            box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-           height: 100vh;
+           height: auto;
            border-radius: 20px;
            text-align: left;
            padding: 3% 0px 5% 6%;
@@ -66,21 +66,38 @@
            text-align: left;
            padding: 3% 0px 0% 6%;
         }
-        
+        table{
+        border: 2px solid #212456;
+        }
+        tr,td,th{
+        border: 1px solid black;
+        border-collapse: collapse;
+        font-size: 24px;
+        padding: 0.8%;
+        text-align: center;
+        width: auto;
+        }
+        tr:hover{
+        background-color: #8be7de;
+        }
+
     </style>
-    <div class="container-fluid" ng-controller="doctorListDisplayController">
+    <div class="container-fluid" ng-controller="doctorListDisplayController" >
         <div class="row">
-            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 doctors-list-box">
-                <h1 class="doctors-list-heading">All Doctors:{{HIIII}}</h1>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 doctors-list-box">
+                <h1 class="doctors-list-heading">All Doctors:{{name}}</h1>
                 <div class="doctors-list">
-                    <!-- <button id="btn" value="HEY">CHECK</button> -->
+                    <input ng-model="searchtxt.first_name" type="text" placeholder="Search By First Name">
+                    <input ng-model="searchtxt.last_name" type="text"  placeholder="Search By Last Name">
+
                     <table>
                         <tr>
                             <th >Name</th>
                             <th>Experience</th>
                             <th>Qualification</th>
+                            <th>View Detail</th>
                         </tr>
-                        <tr ng-repeat="data in datas">
+                        <tr ng-repeat="data in datas | filter : searchtxt">
                             <td>{{data.first_name}} {{data.last_name}}</td>
                             <td>{{data.previous_exp}}</td>
                             <td>{{data.qualification}}</td>
@@ -90,14 +107,10 @@
                     <div id="outEmail"></div>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 right-box">
-                <h4 class="right-box-heading">Notification:</h4>
-                <div class="right-box-list"></div>
-            </div>
         </div>
     </div>
     <script>
-  
+
     </script>
 </body>
 

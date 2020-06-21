@@ -82,6 +82,10 @@
             color: #5b1111;
             font-size: 45px;
         }
+        .fa-mortar-board{
+        color: #13173b;
+        font-size: 45px;
+        }
 
         .doctor-data-heading {
             color: #1598a5;
@@ -152,7 +156,7 @@
                     </div>
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    
+
                     <div class="information-box">
                         <h4 class="information-heading">Information:</h4>
                         <p>
@@ -166,14 +170,21 @@
             </div>
             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 ">
                         <div class="doctor-data1">
-                            <i class="fa fa-edit" aria-hidden="true"></i>
+                            <i class="fa fa-mortar-board" aria-hidden="true"></i>
                             <h5 class="doctor-data-heading">Qualification</h5>
                             <h2 class="doctor-data">{{docprofile.qualification}}</h2>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 ">
+                        <div class="doctor-data3">
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                            <h5 class="doctor-data-heading">Specialist Of</h5>
+                            <h2 class="doctor-data">{{docprofile.department}}</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
                         <div class="doctor-data2">
                             <i class="fa fa-tags" aria-hidden="true"></i>
                             <h5 class="doctor-data-heading">Experience</h5>

@@ -138,8 +138,8 @@ function validateGender(a, b) {
         return true;
     }
 }
- 
-// function sendRegistrationData() { 
+
+// function sendRegistrationData() {
 //     var firstName = document.getElementById("first_name").value
 //     var lastName = document.getElementById("last_name").value;
     // var mobileNumber = document.getElementById("mobile_number").value;
@@ -187,10 +187,10 @@ function onSubmit() {
     if ((a == true) && (b == true) && (c == true) && (d == true) && (e == true) && (f == true) && (g == true) && (h == true) && (i == true) && (j == true) && (k == true)) {
         // sendRegistrationData();
         console.log("Right");
+        return true;
 
-    } 
+    }
     else {
-        alert("Fill All Fields")
         console.log("WRONG");
     }
 }

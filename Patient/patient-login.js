@@ -41,8 +41,8 @@ function validateFields() {
     var u = validateUsername();
     if ((p == true) && (u == true)) {
         console.log("Right");
+        return true;
     } else {
-        alert("Fill alll Fields!")
         console.log("Wrong")
     }
 }

@@ -11,8 +11,8 @@
 
     <!-- JS, Popper.js, and jQuery -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-            </script> -->
+          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+          </script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -28,7 +28,6 @@
 </head>
 
 <body>
-    <script src="pages-manager/patients-list.js"></script>
     <style>
         body {
             background-color: #eaf2f3;
@@ -36,17 +35,17 @@
             letter-spacing: 1px;
         }
 
-        .patients-list-box {
+        .appointments-list-box {
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
             height: 100vh;
             border-radius: 20px;
             text-align: left;
-            padding: 1% 0px 5% 6%;
+            padding: 2% 0px 5% 6%;
             margin: 0px 0px 3% 0%;
         }
 
-        .patients-list-heading {
+        .appointments-list-heading {
             /* font-size: 35px; */
             letter-spacing: 2px;
             color: #1598a5;
@@ -54,65 +53,41 @@
             /* padding: 0% 0px 0% 6%; */
         }
 
-        .right-box-list {
-            background-color: #ffffff;
-            box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-            height: 100vh;
-            border-radius: 20px;
-            text-align: left;
-            padding: 3% 0px 5% 6%;
-            margin: 0% 0px 3% 0%;
-        }
 
-        .right-box-heading {
-            letter-spacing: 2px;
-            color: #1598a5;
-            text-align: left;
-            padding: 3% 0px 0% 6%;
+        .btn-input,.prescription-box, .further-instruction {
+            width: 60%;
+            margin-left: 10%;
+            padding: 2%;
         }
-        table{
-        border: 2px solid #212456;
-        }
-        tr,td,th{
-        border: 1px solid black;
-        border-collapse: collapse;
-        font-size: 24px;
-        padding: 0.8%;
-        text-align: center;
-        width: auto;
-        }
-        tr:hover{
-        background-color: #8be7de;
+        label{
+            margin-left: 10%;
         }
     </style>
-    <div class="container-fluid" ng-controller="patientListDisplayController">
+    <div class="container-fluid" ng-controller="makeReportController">
         <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 patients-list-box">
-                <h1 class="patients-list-heading">All patients:{{HIIII}}</h1>
-                <div class="patients-list">
-                    <!-- <button id="btn" value="HEY">CHECK</button> -->
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Mobile Number</th>
-                            <th>View Details</th>
-                        </tr>
-                        <tr ng-repeat="data in datas">
-                            <td>{{data.first_name}} {{data.last_name}}</td>
-                            <td>{{data.age}}</td>
-                            <td>{{data.mobile_number}}</td>
-                            <td><button class="btn-class" value="{{data.email}}">View Details</button></td>
-                        </tr>
-                    </table>
-                    <div id="outPatientEmail"></div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 appointments-list-box">
+                <h1 class="appointments-list-heading">Make Report:{{name}}</h1>
+                <br><br>
+                <div class="appointments-form">
+                    <div class="row">
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
+                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                            <label for="prescription">Prescription</label>
+                            <br>
+                            <textarea name="prescription" id="prescription" class="prescription-box"  rows="5" placeholder="Enter Prescription"></textarea>
+                            <br>
+                            <label for="further-instruction">Further Instruction</label> <br>
+                            <textarea name="further-instruction" id="instruction"  class="further-instruction" placeholder="Enter Further Instruction" rows="3"></textarea>
+                            <br>
+                            <input type="button" value="Fix Appoitnment" class="btn-input"
+                                ng-click="makereport()">
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-
-    </script>
 </body>
 
 </html>

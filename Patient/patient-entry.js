@@ -63,7 +63,7 @@ myApp.controller("registrationController", function ($scope, $http) {
     $scope.weight = "Your Weight";
 
     $scope.postdata = function (firstname, lastname, mobilenumber, email, gender, password, age, bloodgroup, height, weight) {
-        
+
         var data = {
             first_name: firstname,
             last_name: lastname,
@@ -76,11 +76,18 @@ myApp.controller("registrationController", function ($scope, $http) {
             height: height,
             weight: weight
         }
+        var a = onSubmit();
         console.log(data);
-        $http.post("http://384a09a05a47.ngrok.io/patient/register/", JSON.stringify(data))
-            .then(function (res) {
-                console.log(res);
-            }).catch
+    if(a == true){
+         $http.post("https://17c34c9b9e4c.ngrok.io/patient/register/", JSON.stringify(data))
+             .then(function (res) {
+                 console.log(res);
+             })
+    }
+    else{
+        console.log("not send");
+    }
+
     }
 });
 myApp.controller("logController", function ($scope, $http) {
@@ -93,18 +100,24 @@ myApp.controller("logController", function ($scope, $http) {
             email: email,
             password: password
         }
+        var a = validateFields();
         console.log(data);
-        $http.post("http://384a09a05a47.ngrok.io/patient/login/", JSON.stringify(data))
-            .then(function (res) {
-                console.log(res);
-                console.log(res.data);
-                console.log(res.data[0]);
-                var pdata = JSON.stringify(res.data[0]);
-                console.log(pdata);
-                localStorage.setItem("pdata", pdata);                
-               window.location.href = "patient-portal.html";
+        if(a == true){
+            $http.post("https://17c34c9b9e4c.ngrok.io/patient/login/", JSON.stringify(data))
+                .then(function (res) {
+                    console.log(res);
+                    console.log(res.data);
+                    console.log(res.data[0]);
+                    var pdata = JSON.stringify(res.data[0]);
+                    console.log(pdata);
+                    localStorage.setItem("pdata", pdata);
+                    window.location.href = "patient-portal.html";
 
-            })
+                })
+        }
+        else{
+            console.log("Not Send");
+        }
     }
     // $http.get("url")
     // .then(function(response){

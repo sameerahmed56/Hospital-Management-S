@@ -1,9 +1,6 @@
 var patientData = localStorage.getItem("pdata");
-console.log(patientData);
  patientJson = JSON.parse(patientData);
-// console.log(patientJson.email);
 var myApp = angular.module("myApp", ['ui.router']);
-// var myApp = angular.module("myApp", []);
 myApp.controller("displayController", function ($scope) {
     $scope.profile = patientJson;
 })
@@ -18,7 +15,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('loginmessage', {
             url: '/pages/login/:a/:b',
-            templateUrl: 'pages/login.html',
+            templateUrl: 'pages/medical-history.html',
             controller: 'loginController'
 
         })
@@ -26,6 +23,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/pages/appointment/:g/:h',
             templateUrl: 'pages/fix-appointment.html',
             controller: 'thirdController'
+
+        })
+        .state('notificationmessage', {
+            url: '/pages/notification/:c/:d',
+            templateUrl: 'pages/notification.html',
+            controller: 'notificationController'
 
         })
 
@@ -37,35 +40,37 @@ myApp.controller("appointmentController", function ($scope, $http) {
     $scope.date = null;
     $scope.Time = null;
 
-
-    $scope.makeappointment = function (disease, date, time) {
+    $scope.makeappointment = function () {
         console.log("hii");
-        var _someDate;
-        $scope.modelObject = {
-            something: function (value) {
-                return arguments.length ? _someDate = $filter('date')(value, 'yyyy-MM-dd', 'UTC') : _someDate;
-        }
-        };
+        var dateValue = document.getElementById('date1').value;
+        var timeValue = document.getElementById('time1').value;
+        var diseaseValue = document.getElementById('disease1').value;
+
         var data = {
-            disease: disease,
-            date_for_app: date,
-            time_for_app: time
+            disease: diseaseValue,
+            date_for_app: dateValue,
+            time_for_app: timeValue,
+            email : patientJson.email
         }
         console.log(data);
-        $http.post("http://384a09a05a47.ngrok.io/patient/submit_appointment/", JSON.stringify(data))
+        $http.post("https://17c34c9b9e4c.ngrok.io/patient/make_appointment/", JSON.stringify(data))
             .then(function (res) {
                 console.log(res);
-               
+
             })
     }
-     // $scope.employees = res;
-                // var resp = res;
-                // localStorage.setItem("profiledata": resp);
-    // $http.get("url")
-    // .then(function(response){
-    //     $scope.dataOut = response.data;
-    // })
+
 })
+
+myApp.controller('medicalHistroyController', function ($scope) {
+    $scope.e = "hii",
+        $scope.f = "byee"
+})
+myApp.controller('notificationController', function ($scope) {
+    $scope.e = "hii",
+        $scope.f = "byee"
+})
+
 myApp.controller('signupController', function ($scope, $stateParams) {
     $scope.e = $stateParams.e,
         $scope.f = $stateParams.f
@@ -78,4 +83,7 @@ myApp.controller('thirdController', function ($scope, $stateParams) {
     $scope.g = $stateParams.g,
         $scope.h = $stateParams.h
 })
-
+myApp.controller('NotificationController', function ($scope, $stateParams) {
+    $scope.c = $stateParams.c,
+        $scope.d = $stateParams.d
+})

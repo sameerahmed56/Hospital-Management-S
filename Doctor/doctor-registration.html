@@ -33,14 +33,15 @@
             /* background-image: linear-gradient(to right, #355c7d, #415c7f, #4d5c7f, #575b7f, #615b7e, #6b5c81, #765e82,
             #805f83, #906286, #a16587, #b16887, #c06c84);
             font-family: sans-serif; */
-            background-image: linear-gradient(to right, #72808d, #6f7b8b, #6d7588, #6d7085, #6d6a81, #70677e, #72647b, #756177, #796074, #7c6070, #7f5f6d, #815f69);
+            /* background-image: linear-gradient(to right, #72808d, #6f7b8b, #6d7588, #6d7085, #6d6a81, #70677e, #72647b, #756177, #796074, #7c6070, #7f5f6d, #815f69); */
+            background-image: linear-gradient(to bottom, #00416a, #476788, #7a8fa6, #aeb9c6, #e4e5e6);
         }
         .loginbox{
             background-color: #f3f3f5;
             box-shadow: 2px 5px 35px 10px rgba(0,0,0,0.2);
         }
         .heading-loginbox{
-            background: -webkit-linear-gradient(#2b3c7d, #83bac2);
+            background: -webkit-linear-gradient(#113b45, #428e9a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-align: center;
@@ -52,40 +53,49 @@
         label{
             margin-left: 10%;
             letter-spacing: 2px;
+            margin-top: 5%;
+            font-size: 2.5vh;
         }
         input{
             width: 90%;
-            padding: 2.5% 2% 2.5% 4%;
-            margin: 0% 0px 2% 5% ;
-            border: 2px solid #f1e6e6;
+            padding: 2.8% 1% 2.8% 4%;
+            margin: 0%  0px 1% 5% ;
+            border: none;
             background-color: inherit;
-            border-bottom: 2px solid #382f4572;
-            transition: all 1s;
+            border-bottom: 1px solid #4a4d73;
+            transition: all 0.5s;
             transition-timing-function: ease;
             outline: none;
             letter-spacing: 1px;
         }
-        input:focus,input:valid{
+        input:focus,input:valid,input:visited{
             border: 2px solid #d6377f;
             border-radius: 15px;
             outline: none;
         }
         .error{
             font-size: 15px;
-            padding-left: 10%;
+            padding-left: 12%;
+        }
+        .error1{
+        font-size: 15px;
+        padding-left: 20%;
         }
         select{
-            width: 60%;
+            width: 70%;
             padding: 2% 2% 2% 4%;
-            margin: 3% 0px 0% 20%;
-            background-color: #764369;
-            border: 2px solid #754d87;
-            transition: all 0.5s;
+            margin: 10% 0px 0% 15%;
+            background-color: #2a5890;
+            border: 2px solid #4d5287;
+            transition: all 0.8s;
             color: #ffffff;
             transition-timing-function: ease;
+            padding: 1vh;
+            letter-spacing: 1PX;
+
         }
         select:hover, select:focus{
-            border: 2px solid #311d54;
+            border: 2px solid #efecf5;
             box-shadow: 2px 5px 15px 1px rgba(0,0,0,0.2);
             border-radius: 10px;
             outline: none;
@@ -93,20 +103,22 @@
         option{
             background-color: #413b58;
         }
-        option:hover{
-            background-color: #235365;
-        }
         .signup-btn{
+            background-image: linear-gradient(to right, #192262, #504c85, #807ba8, #b2adcd, #e5e2f3);
+            color: #ffffff;
+            border: 1px solid #333333;
             width: 100%;
-            padding: 3% 2%;
+            padding: 4% 2%;
             text-align: center;
             transition: all 0.6s;
             transition-timing-function: ease;
-            background-color: #ba743a;
-            border: 1px solid #333333;
+            border-radius: 15px;
         }
         .signup-btn:hover{
-            background-color: #b65666;
+            background-image: linear-gradient(to right, #4b66cf, #735ed0, #9753cb, #b642c1, #d22ab2);
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            box-shadow: 5px 10px 25px #37516d;
         }
     </style>
     <br><br>
@@ -114,6 +126,7 @@
         <div class="row">
             <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-1"></div>
             <div class="col-xl-8 col-lg-10 col-md-10 col-sm-10 col-10 loginbox">
+                <form>
                 <div class="container-fluid">
                     <div class="row">
                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -165,7 +178,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 cb">
                             <select id="age" class="age" name="age" onfocusout="validateAge('age','ageerror')"
                                 ng-model="age">
                                 <option>Age</option>
@@ -188,9 +201,9 @@
                                 <option>17</option>
                                 <option>18</option>
                             </select><br>
-                            <span class="error" id="ageerror" style="color:red"></span>
+                            <span class="error1" id="ageerror" style="color:red"></span>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb cb">
+                        <div class="2col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12  cb">
                             <select name='gender' id="gender" onfocusout="validateGender('gender','gendererror')"
                                 ng-model="gender">
                                 <option>Gender</option>
@@ -198,7 +211,23 @@
                                 <option>Female</option>
                                 <option>Other</option>
                             </select><br>
-                            <span class="error" id="gendererror" style="color:red"></span>
+                            <span class="error1" id="gendererror" style="color:red"></span>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12  cb">
+                            <select name='department' id="department"
+                                onfocusout="validateDepartment('department','departmenterror')"
+                                ng-model="department">
+                                <option>Department</option>
+                                <option>Cardiologist</option>
+                                <option>Ear,Nose and Throat(ENT)</option>
+                                <option>Gastroenologist</option>
+                                <option>Neurology</option>
+                                <option>Nutrition and Dietetics</option>
+                                <option>Physiotherapy</option>
+                                <option>Sexual Health</option>
+                                <option>Obstetrics and Gynecologist Units</option>
+                            </select><br>
+                            <span class="error1" id="departmenterror" style="color:red"></span>
                         </div>
                     </div>
                     <div class="row">
@@ -213,12 +242,12 @@
                                 <option>MBBS</option>
                                 <option>PhD</option>
                             </select><br>
-                            <span class="error" id="qualificationerror" style="color:red"></span>
+                            <span class="error1" id="qualificationerror" style="color:red"></span>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 cb cb">
                             <select name='experience' id="experience"
                                 onfocusout="validateExperience('experience','experienceerror')" ng-model="experience">
-                                
+
                                 <option>Experience</option>
                                 <option>0</option>
                                 <option>1</option>
@@ -240,20 +269,21 @@
                                 <option>17</option>
                                 <option>18</option>
                             </select><br>
-                            <span class="error" id="experienceerror" style="color:red"></span>
+                            <span class="error1" id="experienceerror" style="color:red"></span>
                         </div>
+
                     </div>
-                    
+
                  <!-- </div> row div<br> -->
                     <!-- button row starts -->
                     <br>
                     <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3"></div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
-                            <button class="signup-btn" id="signup_btn" onclick="onSubmit()"
-                            ng-click="postdata(firstname, lastname, mobilenumber, email, gender, password, age,qualification,experience)"
+                            <button class="signup-btn" id="signup_btn" type="reset" onclick="onSubmit()"
+                            ng-click="postdata(firstname, lastname, mobilenumber, email, gender, password, age,department,qualification,experience)"
                                 >SignUp</button>
-                                
+
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3"></div>
 
@@ -261,7 +291,8 @@
                     <br><br>
                     <!-- button row end -->
                 </div>
-                </div>            
+            </form>
+                </div>
             <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-1"></div>
         </div>
     </div>

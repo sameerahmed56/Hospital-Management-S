@@ -5,14 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
-<body > 
+<body >
   <style >
     .login-box{
       background-color: #ffffff;
     }
     .left-box{
     padding: 0px;
-    background-color: #36b099;
+    /* background-color: #36b099; */
+    background: url(images/12.jpeg);
+    background-repeat: no-repeat;
     background-size: cover;
     background-repeat: no-repeat;
     border-bottom-left-radius: 20px;
@@ -20,7 +22,8 @@
     }
     .heading-loginbox{
       text-align: center;
-      padding: 3% 0px;
+      padding: 5% 0px;
+      letter-spacing: 2px;
     }
     input{
     width: 100%;
@@ -85,14 +88,13 @@
     color: #ffffff;
     border: 1px solid #ffffff;
     box-shadow: 5px 10px 25px #37516d;
-
-
     }
   </style>
     <div class="login-box" ng-controller="registrationController">
+      <form>
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <h2 class="heading-loginbox">User Registeration</h2>
+          <h2 class="heading-loginbox"><strong>Patient </strong> Registeration</h2>
         </div>
       </div>
       <div class="row">
@@ -217,10 +219,11 @@
       <div class="row">
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3"></div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
-          <button class="login-btn" id="login_btn" onclick="onSubmit()" ng-click="postdata(firstname,lastname,mobilenumber,email,gender,password,age,bloodgroup,height,weight)" >LogIn</button>
+          <button class="login-btn" id="login_btn" type="reset" onclick="onSubmit()" ng-click="postdata(firstname,lastname,mobilenumber,email,gender,password,age,bloodgroup,height,weight)">SignUp</button>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3"></div>
       </div>
+      </form>
     </div>
 </body>
 </html>

@@ -9,17 +9,24 @@ app.controller("loginController", function($scope,$http){
             username:username,
             password: password
         }
+        var a = validateFields();
         console.log(data);
-        $http.post("http://384a09a05a47.ngrok.io/manager/login/", JSON.stringify(data))
-        .then(function(res){
-            console.log(res);
-            // console.log(res.data);
-            // console.log(res.data[0]);
-            // var pdata = JSON.stringify(res.data[0]);
-            // console.log(pdata);
-            // localStorage.setItem("mdata", mdata);
-            // window.location.href = "manager-portal.html";
-        })
+        if (a == true){
+            $http.post("https://17c34c9b9e4c.ngrok.io/manager/login/", JSON.stringify(data))
+                .then(function (res) {
+                    console.log(res);
+                    // console.log(res.data);
+                    console.log(res.data);
+                    var mdata = JSON.stringify(res.data);
+                    console.log(mdata);
+                    localStorage.setItem("mdata", mdata);
+                    window.location.href = "manager-portal.html";
+                })
+        }
+        else{
+            console.log("not send");
+        }
+
     }
     // $http.get("url")
     // .then(function(response){
@@ -72,9 +79,10 @@ function validateFields() {
     var p = validatePassword();
     var u = validateUsername();
     if ((p == true) && (u == true)) {
-        validateAPI();
+        console.log("right");
+        return true;
     } else {
-        alert("Fill alll Fields!")
+        console.log("wrong");
     }
 }
 

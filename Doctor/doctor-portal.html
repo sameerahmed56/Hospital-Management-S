@@ -35,8 +35,15 @@
             width: 20vh;
             text-align: center;
         }
-        .sidenav-box> a{
+        /* .sidenav-box> a{
             color: #7aa4ae;
+        } */
+        .sidenav-box>a{
+        color: #7aa4ae;
+        }
+        .sidenav-box>a>i{
+        color: #7aa4ae;
+        font-size: 35px;
         }
         #plus_symbol{
             color: #7aa4ae;
@@ -45,13 +52,23 @@
             padding: 50px 50px 0px 50px;
         }
     </style>
-    <div ng-app="myApp">
+    <div ng-app="myApp" ng-controller="docPortalController">
 
         <div class="sidenav-box">
             <i class="fa fa-plus-square" id="plus_symbol" aria-hidden="true"></i> <br>
             <br>
-            <a ui-sref="signupmessage({e:11, f:10})"><strong>Dashboard</strong></a> <br><br>
-            <a ui-sref="loginmessage({a:10, b:10})"><strong>All Patients</strong></a>
+            <a ui-sref="signupmessage({e:11, f:10})">
+                <i class="fa fa-user-md" aria-hidden="true"></i> <br>
+                <strong>Dashboard</strong></a> <br><br>
+            <a ui-sref="allpatientmessage({a:10, b:10})">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i> <br>
+                <strong>All Patients</strong></a> <br><br>
+            <a ui-sref="appointmentmessage({c:12, d:10})">
+                        <i class="fa fa-bell-o" aria-hidden="true"></i> <br>
+                <strong>Pending Appointments</strong></a> <br><br>
+            <a ui-sref="reportmessage({g:10, h:6})">
+                <i class="fa fa-bell-o" aria-hidden="true"></i> <br>
+                <strong>Make Report</strong></a>
         </div>
         <div class="wrap-box">
             <div class="ui-view">
