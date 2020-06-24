@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
+    <script src="get-report.js"></script>
     <title>Dashboard</title>
 </head>
 
@@ -38,7 +39,7 @@
         .medical-history-list-box {
             background-color: #eaf2f3;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-            height: 100vh;
+            height: auto;
             border-radius: 20px;
             text-align: left;
             padding: 1% 0px 5% 6%;
@@ -49,56 +50,66 @@
             /* font-size: 35px; */
             text-align: center;
             letter-spacing: 2px;
-            color: #1598a5;
+            color: #135e71;
             text-align: left;
             margin-bottom: 3%;
             /* padding: 0% 0px 0% 6%; */
         }
-        .medical-history-list{
-            box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
+
+        .medical-history-list {
+            box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
             width: 60%;
             margin-left: 20%;
-            height: 70vh;
+            height: 80vh;
             background-color: #ffffff;
             color: #333333;
             text-align: left;
             padding: 2%;
         }
-        .report{
+
+        .report {
             text-align: center;
             margin: 0% 0px 6% 0px;
         }
-        .time{
+
+        .time {
             margin-left: 70%;
         }
-        .instruction{
+
+        .instruction {
             margin-top: 8%;
         }
-        .doctor{
+
+        .doctor {
             margin-top: 5%;
             margin-left: 60%;
         }
-        .department{
+
+        .department {
             margin: 2% 0px 0px 60%;
         }
     </style>
-    <div class="container-fluid" ng-controller="medicalHistroyController">
+    <div class="container-fluid" ng-app="myApp" ng-controller="getReportController">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 medical-history-list-box">
-                <h1 class="medical-history-list-heading">Medical History:</h1>
-                <div class="medical-history-list" >
-                    <h2 class="report">Report</h2>
-                    <h5 class="date">Appointment Date: {{appointment.date_for_app}} </h5>
-                    <h5 class="time">Time: {{appointment.time_for_app}}</h5>
-                    <h5 class="consultance">Consultance For: {{appointment.disease}}</h5>
-                    <h5 class="prescription">Prescription: <br>{{appointment.prescription}}</h5>
-                    <h5 class="instruction">Further Instruction: <br>{{appointment.instruction}}</h5>
-                    <h5 class="doctor">By Doctor:{{appointment.doctor}}</h5>
-                    <h5 class="department">Department:{{appointment.doctor}}</h5>
+                <h1 class="medical-history-list-heading">Appointment Report:</h1>
+                <div class="medical-history-list" ng-repeat="appointment in appointments">
+                    <h2 class="report">Medical Report</h2>
+                    <h5 class="date"><strong>Appointment Date:</strong> {{appointment.date_of_report}} </h5>
+                    <h5 class="time"><strong>Time:</strong> {{appointment.time_of_report}}</h5>
+                    <h5 class="consultance"><strong>Consultance For:</strong> {{appointment.appntment_id__disease}}</h5>
+                    <h5 class="patient-name"><strong>Patient Name:</strong>
+                        {{appointment.appntment_id__patient_id__first_name}}
+                        {{appointment.appntment_id__patient_id__last_name}}</h5>
+                    <h5 class="prescription"><strong>Prescription:</strong> <br>{{appointment.prescription}}</h5>
+                    <h5 class="instruction"><strong>Further Instruction:</strong> <br>{{appointment.further_ins}}</h5>
+                    <h5 class="doctor"><strong>By Doctor:</strong>{{appointment.appntment_id__doct_key_id__first_name}}
+                        {{appointment.appntment_id__doct_key_id__last_name}}</h5>
+                    <h5 class="department">
+                        <strong>Department:</strong>{{appointment.appntment_id__doct_key_id__department}}</h5>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
 </html>

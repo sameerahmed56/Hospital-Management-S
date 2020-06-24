@@ -52,12 +52,51 @@
           text-align: left;
           /* padding: 0% 0px 0% 6%; */
       }
+      .appointments-list{
+          padding: 4%;
+          background-color: #c9236e61;
+          border-radius: 15px;
+      }
       .disease-input, .date-input, .time-input, .btn-input{
           width: 60%;
-          margin-left: 10%;
+          margin-left: 20%;
           padding: 2%;
+          border: 1px solid #122e54;
+          border-radius: 10px;
+      }
+      label{
+          margin-left: 20%;
+          margin-top: 2%;
+      }
+      #out_data{
+      text-align: center;
+      font-size: 25px;
+      color: #a52b50;
+      }
+      .btn-class {
+      margin-top: 3%;
+      width: 50%;
+      margin-left: 25%;
+      color: #ffffff;
+      text-transform: capitalize;
+      text-decoration: none;
+      background: #276cc1;
+      outline: none;
+      border: 1px solid #276cc1;
+      padding: 10px;
+      border-radius: 30px;
+      display: inline-block;
+      transition: all 0.4s ease 0s;
       }
 
+      .btn-class:hover,
+      .btn-class:focus {
+          outline: none;
+      border: 1px solid #ffffff;
+      box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+      background: #51a8c7;
+      color: #111111;
+      }
   </style>
   <div class="container-fluid" ng-controller="appointmentController">
       <div class="row">
@@ -67,17 +106,32 @@
               <div class="appointments-form">
                   <div class="row">
                       <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
-                      <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
-                          <input type="text" name="disease" placeholder="Enter Consultance You Want" class="disease-input" id="disease1" ng-model="disease"> <br> <br>
-                          <input type="date" id="date1" class="date-input" value="2020-06-17" required
-                          min="2020-06-17" max="2020-07-29"
-                          pattern="\d{4}-\d{2}-\d{2}"> <br> <br>
-                          <input type="time" id="time1" class="time-input">  <br><br>
-                          <input type="button" value="Fix Appoitnment" class="btn-input" ng-click ="makeappointment()">
+                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 appointments-list">
+                          <div class="row">
+                              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                  <label for="disease">Disease</label> <br>
+                                  <input type="text" name="disease" placeholder="Enter Consultance You Want"
+                                      class="disease-input" id="disease1">
+                              </div>
+                              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                  <label for="date">Date Of Appointment <br></label>
+                                  <input type="date" id="date1" class="date-input" value="2020-06-17" required
+                                      min="2020-06-17" max="2020-07-29" pattern="\d{4}-\d{2}-\d{2}">
+                              </div>
+                              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                  <label for="time">Time For App</label>
+                                  <input type="time" id="time1" class="time-input">
+                              </div>
+
+                              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                          <button class="btn-class" ng-click="makeappointment()">Fix Appointment</button>
+                              </div>
+                          </div>
                       </div>
                       <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
                   </div>
-              </div>
+              </div> <br><br>
+              <div id="out_data"></div>
           </div>
       </div>
   </div>

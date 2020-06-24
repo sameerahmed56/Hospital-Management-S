@@ -30,11 +30,7 @@
 <body ng-app="myApp">
   <style>
     body{
-    /* background-image: linear-gradient(to right top, #b0b9dd, #d2aedc, #f7a0c1, #ff9c91, #f6a85d); */
-    /* background-image: linear-gradient(to right top, #dd2b55, #e0436a, #e0577e, #e06a90, #de7ba0, #db84ad, #d88cb9,
-    #d495c4, #cc99d1, #c09fdd, #b1a5e8, #9fabf1);
-    font-family: sans-serif; */
-    background-color: #ab435155;
+      background-image: linear-gradient(to right, #c3c98a, #ecbe93, #fcb8b5, #efbdda, #d0c9ef);
     }
     .wrap{
     box-sizing: border-box;
@@ -65,11 +61,16 @@
       /* border-top-right-radius: 20px; */
     }
     .routing-btn>a{
-      color: mediumvioletred;
+      color: #30388a;
       padding: 0.5%;
     }
     .routing-btn>a:hover{
-      color: navy;
+      color: #d5275b;
+    }
+    #out_data{
+      text-align: center;
+      font-size: 25px;
+      color: red;
     }
   </style>
   <br>
@@ -79,8 +80,8 @@
 </div>
 <div class="container-fluid" >
   <div class="row">
-    <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-    <div class="col-xl-8 col-lg-10 col-md-10 col-sm-10 col-10 wrap ">
+    <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-12"></div>
+    <div class="col-xl-8 col-lg-10 col-md-10 col-sm-10 col-12 wrap ">
       <div class="container-fluid">
         <div class="row">
           <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-3 left-box" id="left_box">
@@ -102,12 +103,12 @@
       </div>
 
     </div>
-    <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
+    <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-12"></div>
   </div>
 </div>
 <br>
 <br>
+    <div id="out_data"></div>
 <br>
 <br>
 </body>

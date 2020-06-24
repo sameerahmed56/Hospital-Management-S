@@ -35,20 +35,22 @@
             letter-spacing: 1px;
         }
 
-        .doctors-approval-list-box {
+        .patients-list-box {
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
             height: auto;
+            min-height: 100vh;
             border-radius: 20px;
             text-align: left;
             padding: 1% 0px 5% 6%;
             margin: 0px 0px 3% 0%;
+            overflow-x: auto;
         }
 
-        .doctors-approval-list-heading {
+        .patients-list-heading {
             /* font-size: 35px; */
             letter-spacing: 2px;
-            color: #1598a5;
+            color: #135e71;
             text-align: left;
             /* padding: 0% 0px 0% 6%; */
         }
@@ -76,36 +78,20 @@
         background-color: #2497b6;
         color: white;
         }
-        .btn-class1 {
+        .btn-class {
         color: #ffffff;
         text-transform: capitalize;
         text-decoration: none;
-        background: #15b115;
-        border: 1px solid #27c139;
+        background: #276cc1;
+        border: 1px solid #276cc1;
         padding: 10px;
         border-radius: 30px;
         display: inline-block;
         transition: all 0.4s ease 0s;
         }
-        .btn-class1:hover,.btn-class1:focus{
+        .btn-class:hover,.btn-class:focus{
         border: 1px solid #ffffff;
-        background: #60d660;
-        color: #111111;
-        }
-        .btn-class2 {
-        color: #ffffff;
-        text-transform: capitalize;
-        text-decoration: none;
-        background: #ba175b;
-        border: 1px solid #ba175b;
-        padding: 10px;
-        border-radius: 30px;
-        display: inline-block;
-        transition: all 0.4s ease 0s;
-        }
-        .btn-class2:hover,.btn-class2:focus{
-        border: 1px solid #ffffff;
-        background: #c73a3a;
+        background: #51a8c7;
         color: #111111;
         }
         @media
@@ -145,35 +131,37 @@
         }
         }
     </style>
-    <div class="container-fluid" ng-controller="doctorApprovalDisplayController">
+    <div class="container-fluid" ng-controller="reportListController">
         <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 doctors-approval-list-box">
-                <h1 class="doctors-approval-list-heading">Doctors Approval List:</h1>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 patients-list-box">
+                <h1 class="patients-list-heading">All Reports:{{HIIII}}</h1>
                 <br>
-                <div class="doctors-approval-list">
+                <div class="patients-list">
+                    <!-- <button id="btn" value="HEY">CHECK</button> -->
                     <table id="customers">
                         <tr>
+                            <th>Date</th>
+                            <th>Time</th>
                             <th>Name</th>
-                            <th>Experience</th>
-                            <th>Qualification</th>
-                            <th>Accept Registration</th>
-                            <th>Reject Registration</th>
+                            <th>Disease</th>
+                            <th>Get Report</th>
                         </tr>
                         <tr ng-repeat="data in datas">
-                            <td>{{data.first_name}} {{data.last_name}}</td>
-                            <td>{{data.previous_exp}}</td>
-                            <td>{{data.qualification}}</td>
-                            <td><button class="btn-class1" value="{{data.email}}"
-                                    ng-click="approveregistration()" onclick="getEmail(value)">Accept</button></td>
-                            <td><button class="btn-class2" value="{{data.emai}}"
-                                    ng-click="rejectregistration()" class="btn" onclick="getEmail(value)">Reject</button></td>
+                            <td>{{data.date_for_app}}</td>
+                            <td>{{data.time_for_app}}</td>
+                            <td>{{data.patient_id__first_name}} {{data.patient_id__last_name}}</td>
+                            <td>{{data.disease}}</td>
+                            <td><button class="btn-class" value="{{data.id}}" ng-click="getreport()" onclick="getReport(value)">Get Report</button></td>
                         </tr>
                     </table>
-                    <div id="outEmail"></div>
+                    <div id="outPatientEmail"></div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+
+    </script>
 </body>
 
 </html>

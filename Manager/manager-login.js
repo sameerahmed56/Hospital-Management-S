@@ -12,7 +12,7 @@ app.controller("loginController", function($scope,$http){
         var a = validateFields();
         console.log(data);
         if (a == true){
-            $http.post("https://17c34c9b9e4c.ngrok.io/manager/login/", JSON.stringify(data))
+            $http.post("https://d378b5057702.ngrok.io/manager/login/", JSON.stringify(data))
                 .then(function (res) {
                     console.log(res);
                     // console.log(res.data);

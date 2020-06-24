@@ -38,9 +38,14 @@ myApp.controller("registrationController", function ($scope, $http) {
         var a = onSubmit();
         if( a == true){
             console.log(data);
-            $http.post("https://17c34c9b9e4c.ngrok.io/doctor/register/", JSON.stringify(data))
+            $http.post("https://d378b5057702.ngrok.io/doctor/register/", JSON.stringify(data))
                 .then(function (res) {
                     console.log(res);
+                    console.log(res.data);
+                    if(res.data == "success"){
+                        document.getElementById('out_data').innerHTML = "You Have Successfully Registered! Need To Wait For Manager Apporval For Login";
+                    }
+
                 })
         }
         else{

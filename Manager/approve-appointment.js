@@ -11,7 +11,7 @@ myApp.controller("approveAppointmentController", function ($scope, $http) {
            department: department
        }
        console.log(data);
-       $http.post("https://17c34c9b9e4c.ngrok.io/manager/assign_doctor/", JSON.stringify(data))
+       $http.post("https://d378b5057702.ngrok.io/manager/assign_doctor/", JSON.stringify(data))
            .then(function (res) {
                console.log(res);
                console.log(res.data);
@@ -29,7 +29,7 @@ myApp.controller("approveAppointmentController", function ($scope, $http) {
            activity: "approved"
        }
        console.log(data);
-       $http.post("https://17c34c9b9e4c.ngrok.io/manager/approve_appointment/", JSON.stringify(data))
+       $http.post("https://d378b5057702.ngrok.io/manager/approve_appointment/", JSON.stringify(data))
            .then(function (res) {
                console.log(res);
                console.log(res.data);

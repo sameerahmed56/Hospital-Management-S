@@ -11,8 +11,8 @@
 
     <!-- JS, Popper.js, and jQuery -->
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-          </script> -->
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+            </script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -35,59 +35,132 @@
             letter-spacing: 1px;
         }
 
-        .appointments-list-box {
+        .patients-list-box {
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-            height: 100vh;
+            height: auto;
+            min-height: 100vh;
+            padding-right: 1%;
             border-radius: 20px;
             text-align: left;
-            padding: 2% 0px 5% 6%;
+            padding: 1% 0px 5% 6%;
             margin: 0px 0px 3% 0%;
+            overflow-x: auto;
         }
 
-        .appointments-list-heading {
+        .patients-list-heading {
             /* font-size: 35px; */
             letter-spacing: 2px;
-            color: #1598a5;
+            color: #135e71;
             text-align: left;
             /* padding: 0% 0px 0% 6%; */
         }
-
-
-        .btn-input,.prescription-box, .further-instruction {
-            width: 60%;
-            margin-left: 10%;
-            padding: 2%;
+        #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: auto;
         }
-        label{
-            margin-left: 10%;
+
+        #customers td, #customers th {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+        letter-spacing: 1px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #2497b6;
+        color: white;
+        }
+        .btn-class {
+        color: #ffffff;
+        text-transform: capitalize;
+        text-decoration: none;
+        background: #276cc1;
+        border: 1px solid #276cc1;
+        padding: 10px;
+        border-radius: 30px;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+        }
+        .btn-class:hover,.btn-class:focus{
+        border: 1px solid #ffffff;
+        background: #51a8c7;
+        color: #111111;
+        }
+        @media
+        only screen and (max-width: 600px) {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+        display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        }
+
+        tr { border: 1px solid #ccc; }
+
+        td {
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        }
+
+        td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        }
         }
     </style>
     <div class="container-fluid" ng-controller="makeReportController">
         <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 appointments-list-box">
-                <h1 class="appointments-list-heading">Make Report:{{name}}</h1>
-                <br><br>
-                <div class="appointments-form">
-                    <div class="row">
-                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
-                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10">
-                            <label for="prescription">Prescription</label>
-                            <br>
-                            <textarea name="prescription" id="prescription" class="prescription-box"  rows="5" placeholder="Enter Prescription"></textarea>
-                            <br>
-                            <label for="further-instruction">Further Instruction</label> <br>
-                            <textarea name="further-instruction" id="instruction"  class="further-instruction" placeholder="Enter Further Instruction" rows="3"></textarea>
-                            <br>
-                            <input type="button" value="Fix Appoitnment" class="btn-input"
-                                ng-click="makereport()">
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"></div>
-                    </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 patients-list-box">
+                <h1 class="patients-list-heading">List Of Appointments With Report To Make:{{HIIII}}</h1>
+                <br>
+                <div class="patients-list">
+                    <!-- <button id="btn" value="HEY">CHECK</button> -->
+                    <table id="customers">
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Disease </th>
+                            <th>Make Report</th>
+                        </tr>
+                        <tr ng-repeat="data in datas">
+                            <td>{{data.date_for_app}} {{data.last_name}}</td>
+                            <td>{{data.time_for_app}}</td>
+                            <td>{{data.disease}}</td>
+                            <td><button class="btn-class" value="{{data.id}}" onclick="getAllData(value)" ng-click="generatereport()">Make Report</button></td>
+                        </tr>
+                    </table>
+                    <div id="outPatientEmail"></div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+
+    </script>
 </body>
 
 </html>

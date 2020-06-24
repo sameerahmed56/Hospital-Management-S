@@ -27,16 +27,24 @@ app.controller("loginController", function ($scope, $http) {
         var a = validateFields();
         console.log(data);
         if( a == true){
-            $http.post("https://17c34c9b9e4c.ngrok.io/doctor/login/", JSON.stringify(data))
+            $http.post("https://d378b5057702.ngrok.io/doctor/login/", JSON.stringify(data))
                 .then(function (res) {
                     console.log(res);
                     console.log(res.data);
+                    if(res.data  == "not registerd"){
+                        document.getElementById('out_data').innerHTML = "You Have Not Registered Yet! Please Register To Continue <br> or Your Registration Has Yet Not Been Approved By Manager"
+                    }
+                    else if (res.data == "wrong password") {
+                        document.getElementById('out_data').innerHTML = "Wrong Password";
+                    }
+                    else{
                     console.log(res.data.data_r);
                     console.log(res.data.pending_appointment);
                     var docdata = JSON.stringify(res.data.data_r[0]);
                     console.log(docdata);
                     localStorage.setItem("docdata", docdata);
                     window.location.href = "doctor-portal.html";
+                    }
                 })
         }
         else{

@@ -5,11 +5,55 @@ console.log(doctorJson.email);
 
 // --
 var myApp = angular.module("myApp", ['ui.router']);
-myApp.controller('docDisplayController', function($scope){
-    $scope.docprofile = doctorJson
+
+myApp.controller('docDisplayController', function($scope,$http){
+    $scope.docprofile = doctorJson;
+    $scope.$on('$stateChangeSuccess', function () {
+        var data = {
+            id: doctorJson.id
+        }
+        console.log(data);
+        $http.post("https://d378b5057702.ngrok.io/doctor/patient_list/", JSON.stringify(data))
+            .then(function (response) {
+                console.log(response.data);
+                // console.log(response.data.data[0]);
+                $scope.datas = response.data;
+            })
+    });
+    $scope.$on('$stateChangeSuccess', function () {
+        var data = {
+            id: doctorJson.id
+        }
+        console.log(data);
+        $http.post("https://d378b5057702.ngrok.io/doctor/report_list/", JSON.stringify(data))
+            .then(function (response) {
+                console.log(response.data);
+                // console.log(response.data.data[0]);
+                $scope.data = response.data;
+            })
+    });
 })
-myApp.controller('patientListController', function ($scope) {
-    // $scope.docprofile = doctorJson
+function viewDetails(value){
+    localStorage.setItem("docPatientId", value);
+    console.log(value);
+}
+myApp.controller('patientListController', function ($scope,$http) {
+    $scope.$on('$stateChangeSuccess', function () {
+        var data = {
+            id: doctorJson.id
+        }
+        console.log(data);
+        $http.post("https://d378b5057702.ngrok.io/doctor/patient_list/", JSON.stringify(data))
+            .then(function (response) {
+                console.log(response.data);
+                // console.log(response.data.data[0]);
+                $scope.datas = response.data;
+            })
+    });
+
+    $scope.getpatientdetail = function(){
+        window.location.href = "patient-detail.html";
+    }
 })
 myApp.controller('docPortalController', function ($scope,$http) {
 
@@ -24,7 +68,7 @@ myApp.controller("pendingAppointmentDisplayController", function ($scope, $http)
             id: doctorJson.id
         }
         console.log(data);
-        $http.post("https://17c34c9b9e4c.ngrok.io/doctor/pending_appointments/", JSON.stringify(data))
+        $http.post("https://d378b5057702.ngrok.io/doctor/pending_appointments/", JSON.stringify(data))
             .then(function (response) {
                 console.log(response.data);
                 $scope.datas = response.data;
@@ -40,7 +84,7 @@ myApp.controller("pendingAppointmentDisplayController", function ($scope, $http)
             activity: "approved"
         }
         console.log(data);
-        $http.post("https://17c34c9b9e4c.ngrok.io/doctor/approve_appointments/", JSON.stringify(data))
+        $http.post("https://d378b5057702.ngrok.io/doctor/approve_appointments/", JSON.stringify(data))
             .then(function (res) {
                 console.log(res);
                 console.log(res.data);
@@ -60,7 +104,7 @@ myApp.controller("pendingAppointmentDisplayController", function ($scope, $http)
             activity: "rejected"
         }
         console.log(data);
-        $http.post("https://17c34c9b9e4c.ngrok.io/doctor/reject_appointment/", JSON.stringify(data))
+        $http.post("https://d378b5057702.ngrok.io/doctor/reject_appointments/", JSON.stringify(data))
             .then(function (res) {
                 console.log(res);
                 console.log(res.data);
@@ -68,22 +112,55 @@ myApp.controller("pendingAppointmentDisplayController", function ($scope, $http)
     }
 });
 
+function getAllData(value){
+    localStorage.setItem("docAllData" , value);
+    console.log(value);
+}
 myApp.controller('makeReportController', function ($scope, $http) {
-    $scope.makereport = function () {
-        var id = $scope.idData;
-        console.log(id);
+    $scope.$on('$stateChangeSuccess', function () {
         var data = {
-            patient_id: id,
-            activity: "rejected"
+            id: doctorJson.id
         }
         console.log(data);
-        $http.post("https://17c34c9b9e4c.ngrok.io/doctor/make_report/", JSON.stringify(data))
-            .then(function (res) {
-                console.log(res);
-                console.log(res.data);
+        $http.post("https://d378b5057702.ngrok.io/doctor/generate_report/", JSON.stringify(data))
+            .then(function (response) {
+                console.log(response.data);
+                $scope.datas = response.data;
+                console.log($scope.datas);
             })
+
+    });
+
+    $scope.generatereport = function(){
+        window.location.href = "generate-report.html";
     }
 })
+function getReport(value){
+    localStorage.setItem("appId",value);
+    console.log(value);
+}
+myApp.controller('reportListController', function ($scope, $http) {
+    $scope.$on('$stateChangeSuccess', function () {
+        var data = {
+            id: doctorJson.id
+        }
+        console.log(data);
+        $http.post("https://d378b5057702.ngrok.io/doctor/report_list/", JSON.stringify(data))
+            .then(function (response) {
+                console.log(response.data);
+                $scope.datas = response.data;
+                console.log($scope.datas);
+            })
+
+    });
+
+    $scope.getreport = function () {
+        window.location.href = "get-report.html"
+    }
+})
+
+// ---
+
 myApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('signupmessage', {
@@ -110,6 +187,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'reportController'
 
         })
+         .state('allreportmessage', {
+            url: '/paages/allreport/:i/:j',
+            templateUrl: 'pages-doc/report-list.html',
+            controller: 'allReportController'
+
+        })
 
     $urlRouterProvider.otherwise('/');
 
@@ -130,4 +213,8 @@ myApp.controller('appointmentController', function ($scope, $stateParams) {
 myApp.controller('reportController', function ($scope, $stateParams) {
     $scope.g = $stateParams.g,
         $scope.h = $stateParams.h
+})
+myApp.controller('allReportController', function ($scope, $stateParams) {
+    $scope.i = $stateParams.i,
+        $scope.j = $stateParams.j
 })

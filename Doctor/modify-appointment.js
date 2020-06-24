@@ -14,11 +14,11 @@ var myApp = angular.module("myApp", []);
              activity: "modified"
          }
          console.log(data);
-         $http.post("https://17c34c9b9e4c.ngrok.io/doctor/approve_appointment/", JSON.stringify(data))
+         $http.post("https://d378b5057702.ngrok.io/doctor/approve_appointments/", JSON.stringify(data))
              .then(function (res) {
                  console.log(res);
                  console.log(res.data);
-                 if (res.data = "approved") {
+                 if (res.data = "modified") {
                      window.location.href = "doctor-portal.html";
                  } else {
                      alert("Not Submitted Some Issue")

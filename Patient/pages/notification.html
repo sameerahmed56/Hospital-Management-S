@@ -41,7 +41,7 @@
             min-height: 100vh;
             border-radius: 20px;
             text-align: left;
-            padding: 1% 0px 5% 6%;
+            padding: 1% 4% 5% 4%;
             margin: 1% 2% 0% 0%;
         }
 
@@ -52,46 +52,75 @@
             text-align: left;
             /* padding: 0% 0px 0% 6%; */
         }
-
-        table {
-            border: 2px solid #212456;
+        .notification{
+            border: 1px solid #2f96b3;
+            padding: 2%;
+            margin-top: 2%;
+            font-size: 3vh;
+            border-radius: 15px;
         }
-
-        tr,
-        td,
-        th {
-            border: 1px solid black;
-            border-collapse: collapse;
-            font-size: 24px;
-            padding: 0.8%;
-            text-align: center;
+        .notification1{
+            border: 2px solid #2fb33e;
+            padding: 2%;
+            margin-top: 2%;
+            font-size: 3vh;
+            border-radius: 15px;
+        }
+        .cancel-btn{
+            background-color: #bf104b;
+            color: #ffffff;
             width: auto;
-        }
-
-        tr:hover {
-            background-color: #8be7de;
+            padding: 1% 0%;
+            text-align: center;
+            margin-left: 80%;
+            border-radius: 10px;
         }
     </style>
-    <div class="container-fluid" ng-controller="notificationController">
+    <div class="container-fluid" ng-controller="notificationsController">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 notification-box">
                 <h1 class="notification-heading">Notification:</h1>
-                <div class="notification">
-                    <table>
-                        <tr>
-                            <th>Name{{hhjhjhjhj}}</th>
-                            <th>Experience</th>
-                            <th>Qualification</th>
-                            <th>Accept Doctor</th>
-                        </tr>
-                        <tr ng-repeat="data in datas">
-                            <td>{{data.first_name}} {{data.last_name}}</td>
-                            <td>{{data.previous_exp}}</td>
-                            <td>{{data.qualification}}</td>
-                            <td><button class="btn-class" value="{{data.email}}">Accept</button></td>
-                        </tr>
-                    </table>
+                    <div class="notification1" ng-repeat="data in datas2">
+                        Your Appointment current status is <strong>{{data.changes_made}} </strong> and it was last
+                        changed by <strong>{{data.changes_made_by}} </strong> on {{data.date_of_notification}} at
+                        {{data.time_of_notification}}. Your Appointment Date Now is
+                        <strong>{{data.appntment_id__date_for_app}} </strong> and
+                        time is <strong>{{data.appntment_id__time_for_app}}</strong>.
+                        <br>
+                        <button class="cancel-btn" type="submit" value="{{data.appntment_id}}" onclick="sendAppId(value)" ng-click="cancelappointment()">Cancel
+                            Appointment</button>
+                    </div>
+                    <div class="notification1" ng-repeat="data in datas1">
+                        Your Appointment current status is <strong>{{data.changes_made}} </strong> and it was last
+                        changed by <strong>{{data.changes_made_by}} </strong> on {{data.date_of_notification}} at
+                        {{data.time_of_notification}}.
+                        <br>
+                        <button class="cancel-btn" type="submit" value="{{data.appntment_id}}"
+                            onclick="sendAppId(value)" ng-click="cancelappointment()">Cancel
+                            Appointment</button>
+                    </div>
+                    <div class="notification" ng-repeat="data in datas3">
+                        Your Appointment current status is <strong>{{data.changes_made}} </strong> and it was last
+                        changed by <strong>{{data.changes_made_by}} </strong> on {{data.date_of_notification}} at
+                        {{data.time_of_notification}}. Your Appointment Date Now is
+                        <strong>{{data.appntment_id__date_for_app}} </strong> and
+                        time is <strong>{{data.appntment_id__time_for_app}}</strong>.
+                        <br>
+                        <button class="cancel-btn" type="submit" value="{{data.appntment_id}}"
+                            onclick="sendAppId(value)" ng-click="cancelappointment()">Cancel
+                            Appointment</button>
+                    </div>
+                    <div class="notification" ng-repeat="data in datas">
+                        Your Appointment current status is <strong>{{data.changes_made}} </strong> and it was last
+                        changed by <strong>{{data.changes_made_by}} </strong> on {{data.date_of_notification}} at
+                        {{data.time_of_notification}}.
+                        <br>
+                        <button class="cancel-btn" type="submit" value="{{data.appntment_id}}"
+                            onclick="sendAppId(value)" ng-click="cancelappointment()">Cancel
+                            Appointment</button>
+                    </div>
                 </div>
+
             </di>
         </div>
     </div>

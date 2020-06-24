@@ -39,18 +39,9 @@ var dt = [{
 var sas = JSON.stringify(dt[0]);
 localStorage.setItem("sas", sas);
 
-// var app = angular.module("myApp", []);
 var myApp = angular.module("myApp", ['ui.router']);
 myApp.controller("registrationController", function ($scope, $http) {
-    // var firstName = document.getElementById("first_name").value
-    // var lastName = document.getElementById("last_name").value;
-    // var mobileNumber = document.getElementById("mobile_number").value;
-    // var a = firstName.substr(0, 2);
-    // console.log(a);
-    // var b = lastName.substr(0, 2);
-    // var c = mobileNumber.substr(6, 4);
-    // var medicalId = a + b + c;
-    // $scope.medicalid = medicalId;
+
     $scope.firstname = null;
     $scope.lastname = null;
     $scope.mobilenumber = null;
@@ -79,9 +70,14 @@ myApp.controller("registrationController", function ($scope, $http) {
         var a = onSubmit();
         console.log(data);
     if(a == true){
-         $http.post("https://17c34c9b9e4c.ngrok.io/patient/register/", JSON.stringify(data))
+         $http.post("https://d378b5057702.ngrok.io/patient/register/", JSON.stringify(data))
              .then(function (res) {
                  console.log(res);
+                 console.log(res.data);
+
+                 if(res.data == "sucess"){
+                     document.getElementById('out_data').innerHTML = "You Have Successfully Registerd! Please Login To Continue"
+                 }
              })
     }
     else{
@@ -103,16 +99,22 @@ myApp.controller("logController", function ($scope, $http) {
         var a = validateFields();
         console.log(data);
         if(a == true){
-            $http.post("https://17c34c9b9e4c.ngrok.io/patient/login/", JSON.stringify(data))
+            $http.post("https://d378b5057702.ngrok.io/patient/login/", JSON.stringify(data))
                 .then(function (res) {
                     console.log(res);
                     console.log(res.data);
-                    console.log(res.data[0]);
+                    if(res.data == "not registered"){
+                        document.getElementById('out_data').innerHTML = "You Have Not Registered Yet. Please SignUp To Continue"
+                    }
+                    else if (res.data == "wrong password") {
+                        document.getElementById('out_data').innerHTML = "Invalid Password"
+                    }
+                    else{
                     var pdata = JSON.stringify(res.data[0]);
                     console.log(pdata);
                     localStorage.setItem("pdata", pdata);
                     window.location.href = "patient-portal.html";
-
+                    }
                 })
         }
         else{

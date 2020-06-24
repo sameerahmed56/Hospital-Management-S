@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,16 +25,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
     <title>Dashboard</title>
+    <script src="patient-detail.js"></script>
 </head>
+
 <body>
     <style>
-        body{
+        body {
             background-color: #e4edee;
             font-family: sans-serif;
             letter-spacing: 1px;
             color: #272727;
         }
-        .profile-box{
+
+        .profile-box {
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
             width: 90%;
@@ -44,16 +48,21 @@
             padding: 3%;
             letter-spacing: 1px;
         }
-        .profile-pic{
+
+        .profile-pic {
             height: 140px;
             width: 140px;
             border-radius: 25%;
             padding: 3%;
         }
-        .patient-age{
+
+        .patient-age {
             color: #b4b6b9;
         }
-        .patient-data1,.patient-data2,.patient-data3{
+
+        .patient-data1,
+        .patient-data2,
+        .patient-data3 {
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
             width: 95%;
@@ -63,38 +72,45 @@
             padding: 3%;
             letter-spacing: 2px;
         }
-        .fa-tint{
+
+        .fa-tint {
             color: red;
             font-size: 45px;
         }
-        .fa-arrows-v{
+
+        .fa-arrows-v {
             color: green;
             font-size: 45px;
         }
-        .fa-database{
+
+        .fa-database {
             color: yellow;
             font-size: 45px;
         }
-        .patient-data-heading{
+
+        .patient-appointment-heading {
             color: #1598a5;
             padding-top: 4%;
         }
-        .patient-data{
+
+        .patient-appointment {
             color: #191d2c;
         }
-        .information-box{
-          background-color: #ffffff;
-          box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-          height: 200px;
-          border-radius: 20px;
-          text-align: left;
-          padding: 6% 0px 5% 6%;
-          font-size: 20px;
-          min-height: 60vh;
-          line-height: 39px;
-          letter-spacing: 1px;
+
+        .information-box {
+            background-color: #ffffff;
+            box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
+            height: 200px;
+            border-radius: 20px;
+            text-align: left;
+            padding: 6% 0px 5% 6%;
+            font-size: 20px;
+            height: 400px;
+            line-height: 39px;
+            letter-spacing: 1px;
         }
-        .information-heading{
+
+        .information-heading {
             font-size: 35px;
             letter-spacing: 2px;
             color: #1598a5;
@@ -102,32 +118,38 @@
             padding: 3% 0px 0% 6%;
 
         }
-        .test-report{
-          background-color: #ffffff;
-          color: #222222;
-          box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-          min-height: 10vh;
-          border-radius: 20px;
-          text-align: left;
-          padding: 3% 0px 5% 6%;
-          margin: 0px 0px 3% 0%;
+
+        .test-report {
+            background-color: #ffffff;
+            color: #111111;
+            box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
+            height: auto;
+            min-height: 20vh;
+            border-radius: 20px;
+            text-align: left;
+            padding: 3% 2% 5% 6%;
+            margin: 0px 0px 3% 0%;
         }
         .test-report-heading{
             color: #27959f;
         }
-        .prescription-box{
-          background-color: #ffffff;
-          color: #222222;
-          box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-          min-height: 50vh;
-          border-radius: 20px;
-          text-align: left;
-          padding: 3% 0px 5% 6%;
-          margin: 3% 0px 3% 0%;
-          overflow-x: auto;
+
+        .prescription-box {
+            background-color: #ffffff;
+            color: #111111;
+            box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
+            height: auto;
+            min-height: 40vh;
+            border-radius: 20px;
+            text-align: left;
+            padding: 3% 2% 5% 6%;
+            margin: 3% 0px 3% 0%;
         }
         .prescription-box-heading{
-          color: #27959f;
+            color: #1598a5;
+        }
+        p{
+            font-size: 20px;
         }
         #customers {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -206,7 +228,7 @@
         }
         }
     </style>
-    <div class="container-fluid"  ng-controller="displayController">
+    <div class="container-fluid" ng-app="myApp" ng-controller="patientDetailController">
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -221,23 +243,23 @@
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 ">
                         <div class="patient-data1">
-                        <i class="fa fa-tint" aria-hidden="true"></i>
-                            <h5 class="patient-data-heading">Blood Group</h5>
-                            <h2 class="patient-data">{{profile.blood_group}}</h2>
+                            <i class="fa fa-tint" aria-hidden="true"></i>
+                            <h5 class="patient-appointment-heading">Blood Group</h5>
+                            <h2 class="patient-appointment">{{profile.blood_group}}</h2>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 ">
                         <div class="patient-data2">
-                        <i class="fa fa-arrows-v" aria-hidden="true"></i>
-                            <h5 class="patient-data-heading">Height</h5>
-                            <h2 class="patient-data">{{profile.height}} cm</h2>
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            <h5 class="patient-appointment-heading">Height</h5>
+                            <h2 class="patient-appointment">{{profile.height}} cm</h2>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
                         <div class="patient-data3">
-                        <i class="fa fa-database" aria-hidden="true"></i>
-                            <h5 class="patient-data-heading">Weight</h5>
-                            <h2 class="patient-data">{{profile.weight}} kg</h2>
+                            <i class="fa fa-database" aria-hidden="true"></i>
+                            <h5 class="patient-appointment-heading">Weight</h5>
+                            <h2 class="patient-appointment">{{profile.weight}} kg</h2>
                         </div>
                     </div>
                 </div>
@@ -246,37 +268,43 @@
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h4 class="information-heading">Information:</h4>
+                    <h4 class="information-heading">Information:</h4>
                     <div class="information-box">
 
-                            <p>
-                                <strong>Email: </strong> {{profile.email}} <br>
-                                <strong>Mobile No: </strong> {{profile.mobile_number}} <br>
-                            </p>
+                        <p>
+                            <strong>Email: </strong> {{profile.email}} <br>
+                            <strong>Mobile No: </strong> {{profile.mobile_number}} <br>
+                            <strong>Medical History:</strong>
+                           <ul ng-repeat="appointment in appointments"> <li>{{appointment.disease}}</li></ul>
+                        </p>
 
                     </div>
                 </div>
             </div>
             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                 <div class="test-report">
-                    <h4 class="test-report-heading"><strong>Most Visited Doctor:</strong></h4>
-                    <h3>{{docData.fname}} {{docData.lname}}</h3>
+                    <h4 class="test-report-heading"><strong>Last Appointment: </strong></h4>
+                    <p >At <strong>{{appointments[0].time_for_app}}</strong> on
+                        <strong>{{appointments[0].date_for_app}}</strong> with
+                        problem of
+                        <strong>{{appointments[0].disease}}</strong> and the Prescription given was <strong>
+                            {{appointments[0].report__prescription}}.</strong></p>
                 </div>
                 <div class="prescription-box">
-                    <h4 class="prescription-box-heading"><strong>Recent Apoointments:</strong></h4>
+                    <h4 class="prescription-box-heading"><strong>Previous Appointments:</strong></h4>
+                    <br>
                     <table id="customers">
                         <tr>
-                            <th>Doctor Name</th>
                             <th>Date</th>
                             <th>Time</th>
                             <th>Disease</th>
+                            <th>Prescription</th>
                         </tr>
-                        <tr ng-repeat="data in datas">
-                            <td>{{data.doct_key_id__first_name}} {{data.doct_key_id__last_name}}</td>
-                            <td>{{data.date_for_app}}</td>
-                            <td>{{data.time_for_app}}</td>
-                            <td>{{data.disease}}</td>
-
+                        <tr ng-repeat="appointment in appointments">
+                            <td>{{appointment.date_for_app}}</td>
+                            <td>{{appointment.time_for_app}}</td>
+                            <td>{{appointment.disease}}</td>
+                            <td>{{appointment.report__prescription}}</td>
                         </tr>
                     </table>
                 </div>
@@ -284,4 +312,5 @@
         </div>
     </div>
 </body>
+
 </html>

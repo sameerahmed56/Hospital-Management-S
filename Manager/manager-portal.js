@@ -33,6 +33,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: 'pages-manager/pending-appointments.html',
             controller: 'fifthController'
         })
+        .state('allappointmentmessage', {
+            url: '/allappointments/:k/:l',
+            templateUrl: 'pages-manager/all-appointments.html',
+            controller: 'sixthController'
+        })
     // .state('root', {
     //     url: '/',
     //     template: "YOU ARE AT ROOT"
@@ -41,39 +46,37 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
 
 });
-myApp.controller("doctorListController", function ($scope, $http) {
-    $scope.getalldoctors = function(){
 
-    }
-});
+function doctorDetail(value) {
+    localStorage.setItem("manDoctorId", value);
+    console.log(value);
+}
 myApp.controller("doctorListDisplayController", function ($scope,$http) {
     $scope.$on('$stateChangeSuccess', function () {
-        console.log("working");
         $http({
                 method: 'GET',
-                url: 'https://17c34c9b9e4c.ngrok.io/manager/all_doctor/'
+                url: 'https://d378b5057702.ngrok.io/manager/all_doctor/'
             })
             .then(function (response) {
-                // $log.info(response);
                 console.log(response);
-                // var a = response.data;
                 console.log(response.data);
                 $scope.datas = response.data;
             });
     });
-
-});
-myApp.controller("patientListController", function ($scope, $http) {
-    $scope.getallpatients = function () {
-
+    $scope.sendDoctorId = function () {
+        window.location.href = "doctor-detail.html";
     }
 });
 
+function patientDetail(value){
+    localStorage.setItem("manPatientId", value);
+    console.log(value);
+}
 myApp.controller("patientListDisplayController", function ($scope,$http) {
     $scope.$on('$stateChangeSuccess', function () {
         $http({
                 method: 'GET',
-                url: 'https://17c34c9b9e4c.ngrok.io/manager/all_patient/'
+                url: 'https://d378b5057702.ngrok.io/manager/all_patient/'
             })
             .then(function (response) {
                 console.log(response);
@@ -81,6 +84,9 @@ myApp.controller("patientListDisplayController", function ($scope,$http) {
                 $scope.datas = response.data;
             });
     });
+    $scope.sendPatiendId = function(){
+        window.location.href = "patient-detail.html";
+    }
 
 });
 
@@ -101,7 +107,7 @@ myApp.controller("pendingAppointmentDisplayController", function ($scope,$http) 
     $scope.$on('$stateChangeSuccess', function () {
         $http({
                 method: 'GET',
-                url: 'https://17c34c9b9e4c.ngrok.io/manager/pending_appointments/'
+                url: 'https://d378b5057702.ngrok.io/manager/pending_appointments/'
             })
             .then(function (response) {
                 console.log(response);
@@ -113,7 +119,7 @@ myApp.controller("pendingAppointmentDisplayController", function ($scope,$http) 
     $scope.approveappointment = function () {
             $http({
                     method: 'GET',
-                    url: 'https://17c34c9b9e4c.ngrok.io/manager/assign_department/'
+                    url: 'https://d378b5057702.ngrok.io/manager/assign_department/'
                 })
                 .then(function (response) {
                     var departmentData = JSON.stringify(response.data);
@@ -126,7 +132,7 @@ myApp.controller("pendingAppointmentDisplayController", function ($scope,$http) 
 
         $http({
                 method: 'GET',
-                url: 'https://17c34c9b9e4c.ngrok.io/manager/assign_department/'
+                url: 'https://d378b5057702.ngrok.io/manager/assign_department/'
             })
             .then(function (response) {
                 console.log(response.data);
@@ -143,7 +149,7 @@ myApp.controller("pendingAppointmentDisplayController", function ($scope,$http) 
             activity: "rejected"
         }
         console.log(data);
-        $http.post("https://17c34c9b9e4c.ngrok.io/manager/reject_appointment/", JSON.stringify(data))
+        $http.post("https://d378b5057702.ngrok.io/manager/reject_appointment/", JSON.stringify(data))
             .then(function (res) {
                 console.log(res);
                 console.log(res.data);
@@ -167,7 +173,7 @@ myApp.controller("doctorApprovalDisplayController", function ($scope,$http) {
    $scope.$on('$stateChangeSuccess', function () {
        $http({
                method: 'GET',
-               url: 'https://17c34c9b9e4c.ngrok.io/manager/doctor_approval/'
+               url: 'https://d378b5057702.ngrok.io/manager/doctor_approval/'
            })
            .then(function (response) {
                console.log(response.data);
@@ -183,7 +189,7 @@ myApp.controller("doctorApprovalDisplayController", function ($scope,$http) {
             activity: "approved"
         }
         console.log(data);
-        $http.post("https://17c34c9b9e4c.ngrok.io/manager/approve_registration/", JSON.stringify(data))
+        $http.post("https://d378b5057702.ngrok.io/manager/approve_registration/", JSON.stringify(data))
             .then(function (res) {
                 console.log(res);
 
@@ -197,13 +203,32 @@ myApp.controller("doctorApprovalDisplayController", function ($scope,$http) {
             activity: "rejected"
         }
         console.log(data);
-        $http.post("https://17c34c9b9e4c.ngrok.io/manager/approve_registration/", JSON.stringify(data))
+        $http.post("https://d378b5057702.ngrok.io/manager/approve_registration/", JSON.stringify(data))
             .then(function (res) {
                 console.log(res);
 
             })
     }
 });
+function getAppId(value){
+    localStorage.setItem("manAppId", value);
+    console.log(value);
+}
+myApp.controller("allAppointmentDisplayController" , function($scope, $http){
+    $scope.$on('$stateChangeSuccess', function () {
+        $http({
+                method: 'GET',
+                url: 'https://d378b5057702.ngrok.io/manager/all_appointment/'
+            })
+            .then(function (response) {
+                console.log(response.data);
+                $scope.datas = response.data;
+            });
+    });
+    $scope.getreport = function(){
+        window.location.href = "get-report.html";
+    }
+})
 
 myApp.controller('firstController', function ($scope, $stateParams) {
     $scope.a = $stateParams.a,
@@ -212,9 +237,7 @@ myApp.controller('firstController', function ($scope, $stateParams) {
 
 myApp.controller('secondController', function ($scope, $stateParams) {
     $scope.c = $stateParams.c,
-        $scope.d = $stateParams.d,
-        $scope.rate = '';
-
+        $scope.d = $stateParams.d
 })
 myApp.controller('thirdController', function ($scope, $stateParams) {
     $scope.e = $stateParams.e,
@@ -227,6 +250,10 @@ myApp.controller('fourthController', function ($scope, $stateParams) {
 myApp.controller('fifthController', function ($scope, $stateParams) {
     $scope.i = $stateParams.i,
         $scope.j = $stateParams.j
+})
+myApp.controller('sixthController', function ($scope, $stateParams) {
+    $scope.k= $stateParams.k,
+        $scope.l = $stateParams.l
 })
 
 function openNav() {
@@ -250,16 +277,6 @@ function openNav() {
 }function openBox6() {
     document.getElementById("mySidenav").style.width = "1270px";
     // document.getElementById("main").style.marginLeft = "250px";
-}function openBox7() {
-    document.getElementById("mySidenav").style.width = "1270px";
-    // document.getElementById("main").style.marginLeft = "250px";
-}
-function openBox8() {
-    document.getElementById("mySidenav").style.width = "1270px";
-    // document.getElementById("main").style.marginLeft = "250px";
-}function openBox9() {
-    document.getElementById("mySidenav").style.width = "1270px";
-    // document.getElementById("main").style.marginLeft = "250px";
 }
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
@@ -269,9 +286,13 @@ function closeNav() {
 
 // ------
 function logOut() {
-    window.location = "LogInPRS.html";
+    window.location = "manager-login.html";
 }
-
+$(document).ready(function () {
+    $(".gear-btn").click(function () {
+        $(".logout-panel").fadeToggle("slow");
+    });
+});
 // swal("Reason For Rejection:", {
 //         content: "input",
 //     })
