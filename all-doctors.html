@@ -135,7 +135,7 @@
                             <th>Qualification</th>
                             <th>Specialist Of</th>
                             <th>Experience</th>
-                            <th>View Detail</th>
+
                         </tr>
                         <tr ng-repeat="data in datas">
                             <td>{{data.first_name}} {{data.last_name}}</td>
@@ -143,8 +143,6 @@
                             <td>{{data.qualification}}</td>
                             <td>{{data.department}}</td>
                             <td>{{data.previous_exp}}</td>
-                            <td><button class="btn-class" value="{{data.id}}" onclick="doctorDetail(value)"
-                                    ng-click="sendDoctorId()">View Details</button></td>
                         </tr>
                     </table>
                     </div>
