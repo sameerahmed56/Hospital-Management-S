@@ -35,54 +35,161 @@
             letter-spacing: 1px;
         }
 
-        .doctors-list-box {
+        .appointments-list-box {
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-            height: 100vh;
+            height: auto;
             border-radius: 20px;
             text-align: left;
-            padding: 1% 0px 5% 6%;
+            padding: 1% 3% 5% 6%;
             margin: 0px 0px 3% 0%;
+            overflow-x: auto;
         }
 
-        .doctors-list-heading {
+        .appointments-list-heading {
             /* font-size: 35px; */
             letter-spacing: 2px;
             color: #1598a5;
             text-align: left;
             /* padding: 0% 0px 0% 6%; */
         }
-
-        .right-box-list {
-            background-color: #ffffff;
-            box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-            height: 100vh;
-            border-radius: 20px;
-            text-align: left;
-            padding: 3% 0px 5% 6%;
-            margin: 0% 0px 3% 0%;
+        #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: auto;
         }
 
-        .right-box-heading {
-            letter-spacing: 2px;
-            color: #1598a5;
-            text-align: left;
-            padding: 3% 0px 0% 6%;
+        #customers td, #customers th {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+        letter-spacing: 1px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #2497b6;
+        color: white;
+        }
+        .btn-class1 {
+        color: #ffffff;
+        text-transform: capitalize;
+        text-decoration: none;
+        background: #15b115;
+        border: 1px solid #27c139;
+        padding: 10px;
+        border-radius: 30px;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+        }
+        .btn-class1:hover,.btn-class1:focus{
+        border: 1px solid #ffffff;
+        background: #60d660;
+        color: #111111;
+        }
+        .btn-class2 {
+        color: #ffffff;
+        text-transform: capitalize;
+        text-decoration: none;
+        background: #ba175b;
+        border: 1px solid #ba175b;
+        padding: 10px;
+        border-radius: 30px;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+        }
+        .btn-class2:hover,.btn-class2:focus{
+        border: 1px solid #ffffff;
+        background: #c73a3a;
+        color: #111111;
+        }
+        .btn-class3 {
+        color: #ffffff;
+        text-transform: capitalize;
+        text-decoration: none;
+        background: #bec707;
+        border: 1px solid #bec707;
+        padding: 10px;
+        border-radius: 30px;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+        }
+        .btn-class3:hover,.btn-class3:focus{
+        border: 1px solid #ffffff;
+        background: #9dd026;
+        color: #111111;
+        }
+        @media
+        only screen and (max-width: 600px) {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+        display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        }
+
+        tr { border: 1px solid #ccc; }
+
+        td {
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        }
+
+        td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        }
         }
     </style>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="pendingAppointmentDisplayController">
         <div class="row">
-            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 doctors-list-box">
-                <h1 class="doctors-list-heading">Pending Appointments:</h1>
-                <div class="doctors-list">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 appointments-list-box">
+                <h1 class="appointments-list-heading">Pending Appointments:</h1>
+                <br><br>
+                <div class="appointments-list">
+                    <table id="customers">
+                        <tr>
+                            <th>Disease</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Accept Appointment</th>
+                            <th>Reject Appointment</th>
+                            <th>Modify Appointment</th>
+                        </tr>
+                        <tr ng-repeat="data in datas">
+                            <td>{{data.disease}}</td>
+                            <td>{{data.date_for_app}}</td>
+                            <td>{{data.time_for_app}}</td>
+                            <td><button class="btn-class1" value="{{data.patient_id}}" ng-click="approveappointment()" onclick="getPatientId(value)">Accept</button></td>
+                            <td><button class="btn-class2" value="{{data.patient_id}}" ng-click="rejectappointment()" onclick="getPatientId(value)">Reject</button></td>
+                            <td><button class="btn-class3" value="{{data.patient_id}}" ng-click="modifyappointment()" onclick="getPatientId(value)">Modify</button></td>
+                        </tr>
+                    </table>
                 </div>
-            </div>
-            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 right-box">
-                <h4 class="right-box-heading">Notification:</h4>
-                <div class="right-box-list"></div>
+                <span id="aaa"></span>
             </div>
         </div>
     </div>
 </body>
-
 </html>

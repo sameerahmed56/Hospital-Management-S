@@ -28,7 +28,6 @@
 </head>
 
 <body>
-    <script src="pages-manager/doctors-list.js"></script>
     <style>
         body {
             background-color: #eaf2f3;
@@ -38,11 +37,12 @@
         .doctors-list-box {
           background-color: #ffffff;
           box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-          height: 100vh;
+          height: auto;
           border-radius: 20px;
           text-align: left;
           padding: 1% 0px 5% 6%;
           margin: 0px 0px 3% 0%;
+          overflow-x: auto;
         }
         .doctors-list-heading{
            /* font-size: 35px; */
@@ -51,53 +51,125 @@
            text-align: left;
            /* padding: 0% 0px 0% 6%; */
         }
-        .right-box-list{
-           background-color: #ffffff;
-           box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
-           height: 100vh;
-           border-radius: 20px;
-           text-align: left;
-           padding: 3% 0px 5% 6%;
-           margin: 0% 0px 3% 0%;
+        input{
+            width: 70%;
+            padding: 1.5%;
         }
-        .right-box-heading{
-           letter-spacing: 2px;
-           color: #1598a5;
-           text-align: left;
-           padding: 3% 0px 0% 6%;
+        #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: auto;
         }
-        
+
+        #customers td, #customers th {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+        letter-spacing: 1px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #2497b6;
+        color: white;
+        }
+        .btn-class {
+        color: #ffffff;
+        text-transform: capitalize;
+        text-decoration: none;
+        background: #276cc1;
+        border: 1px solid #276cc1;
+        padding: 10px;
+        border-radius: 30px;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+        }
+        .btn-class:hover,.btn-class:focus{
+        border: 1px solid #ffffff;
+        background: #51a8c7;
+        color: #111111;
+        }
+        @media
+        only screen and (max-width: 600px) {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+        display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        }
+
+        tr { border: 1px solid #ccc; }
+
+        td {
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        }
+
+        td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        }
+        }
     </style>
-    <div class="container-fluid" ng-controller="doctorListDisplayController">
+    <div class="container-fluid" ng-controller="doctorListDisplayController" >
         <div class="row">
-            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 doctors-list-box">
-                <h1 class="doctors-list-heading">All Doctors:{{HIIII}}</h1>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 doctors-list-box">
+                <h1 class="doctors-list-heading">All Doctors:{{name}}</h1>
+                <br>
                 <div class="doctors-list">
-                    <!-- <button id="btn" value="HEY">CHECK</button> -->
-                    <table>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <input ng-model="searchtxt.first_name" type="text" placeholder="Search By First Name">
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <input ng-model="searchtxt.last_name" type="text" placeholder="Search By Last Name">
+                        </div>
+                    </div>
+                    <br>
+                    <table id="customers">
                         <tr>
                             <th >Name</th>
                             <th>Experience</th>
                             <th>Qualification</th>
+                            <th>View Detail</th>
                         </tr>
-                        <tr ng-repeat="data in datas">
+                        <tr ng-repeat="data in datas | filter : searchtxt">
                             <td>{{data.first_name}} {{data.last_name}}</td>
                             <td>{{data.previous_exp}}</td>
                             <td>{{data.qualification}}</td>
-                            <td><button class="btn-class" value="{{data.email}}">View Details</button></td>
+                            <td><button class="btn-class" value="{{data.id}}" onclick="doctorDetail(value)"
+                                    ng-click="sendDoctorId()">View
+                                    Details</button></td>
                         </tr>
                     </table>
                     <div id="outEmail"></div>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 right-box">
-                <h4 class="right-box-heading">Notification:</h4>
-                <div class="right-box-list"></div>
-            </div>
         </div>
     </div>
     <script>
-  
+
     </script>
 </body>
 

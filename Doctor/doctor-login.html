@@ -30,12 +30,14 @@
         body {
             font-family: sans-serif;
             /* background-image: linear-gradient(to right top, #b0b9dd, #c09dcb, #d27ea0, #cf6863, #ad651f); */
-            background-image: linear-gradient(to right top, #b0b9dd, #d2aedc, #f7a0c1, #ff9c91, #f6a85d);
+            /* background-image: linear-gradient(to right top, #b0b9dd, #d2aedc, #f7a0c1, #ff9c91, #f6a85d); */
+            background-image: linear-gradient(to right top, #beadc5, #c2aec4, #c5afc2, #c8b1c1, #cab2c0, #cbb4c3,
+            #ccb7c6, #cdb9c9, #cdbdd0, #ccc2d7, #cbc7de, #c9cce4);
         }
 
         .box {
             box-sizing: border-box;
-            box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.24);
+            box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.34);
             padding: 0px;
             border-radius: 20px;
         }
@@ -49,8 +51,9 @@
         .template {
             padding: 0px;
             background-color: chartreuse;
-            background: url(images/3.jpg)#ffffff;
-            background-position-x: 45%;
+            background: url(images/6.jpeg)#ffffff;
+            /* background-position-x: 0%; */
+            background-position-y: 45%;
 
             /* clip-path: polygon(100% 0, 100% 60%, 75% 100%, 25% 100%, 0 60%, 0 0); */
             background-size: cover;
@@ -62,23 +65,11 @@
         /* .template-review {
             text-align: center;
             margin-top: 40%;
-        
+
             color: palegoldenrod;
             font-size: 380%;
             font-family: cursive;
 
-        } */
-
-        /* .new-user {
-            text-align: center;
-            color: #454545;
-            margin-bottom: 5%;
-            font-size: 100%;
-        }
-
-        .new-user:hover {
-            background-color: #00adb8;
-            color: #70afe6;
         } */
 
         input {
@@ -94,7 +85,7 @@
             outline: none;
             color: #000;
             transition-timing-function: ease-in;
-            transition: border-bottom 1s;
+            transition: border-bottom 0.5s;
             position: relative;
         }
 
@@ -116,7 +107,7 @@
         }
 
         .heading-loginbox {
-            background: -webkit-linear-gradient(#1d2b64, #70afe6);
+            background: -webkit-linear-gradient(#930b34, #ec76b5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 38px;
@@ -132,7 +123,9 @@
             margin-bottom: 15%;
             margin-top: 7%;
             padding: 2.5% 0 2.5% 0;
-            background-image: linear-gradient(to right, #1d2b64, #2a568d, #4484b2, #6bb3d5, #9ce2f6);
+            /* background-image: linear-gradient(to right, #1d2b64, #2a568d, #4484b2, #6bb3d5, #9ce2f6); */
+            background-image: linear-gradient(to right, #832f4c, #973a5c, #ac456c, #c1507d, #d65c8f, #df669b, #e96fa8,
+            #f279b5, #f283be, #f28cc7, #f196cf, #f19fd7);
             border-radius: 18px;
             border: 1px solid #111111;
             letter-spacing: 3px;
@@ -146,8 +139,11 @@
             color: #ffffff;
             border: 1px solid #ffffff;
             box-shadow: 5px 10px 25px #37516d;
-
-
+        }
+        #out_data{
+        text-align: center;
+        font-size: 25px;
+        color:#843168;
         }
     </style>
 
@@ -158,8 +154,8 @@
             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-10 box ">
                 <div class="container-fluid">
                     <div class="row">
-                        
-                        <div class="col-xl-8 col-lg-8 co-md-8 col-sm-8 col-8 loginbox">
+
+                        <div class="col-xl-7 col-lg-7 co-md-8 col-sm-8 col-8 loginbox">
 
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
@@ -194,7 +190,7 @@
                             </a> -->
                             <br><br>
                         </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 template">
+                        <div class="col-xl-5 col-lg-5 col-md-4 col-sm-4 col-4 template">
                             <!-- <h1 class="template-review"> Review</h1> -->
                         </div>
                     </div>
@@ -205,10 +201,9 @@
 
         </div>
     </div>
+    <br><br>
+    <div id="out_data"></div><br>
     <br><br><br>
-    <br><br><br>
-    <br><br><br>
-    <br>
 </body>
 
 </html>

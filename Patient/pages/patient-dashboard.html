@@ -24,7 +24,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
     <title>Dashboard</title>
-    <script src="patient-dashboard.js"></script>
 </head>
 <body>
     <style>
@@ -58,7 +57,7 @@
             background-color: #ffffff;
             box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
             width: 95%;
-            margin: 2% 0px 2% 2.5%; 
+            margin: 2% 0px 2% 2.5%;
             text-align: center;
             border-radius: 20px;
             padding: 3%;
@@ -85,13 +84,13 @@
         }
         .information-box{
           background-color: #ffffff;
-          box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);  
+          box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
           height: 200px;
           border-radius: 20px;
           text-align: left;
           padding: 6% 0px 5% 6%;
           font-size: 20px;
-          height: 400px;
+          min-height: 60vh;
           line-height: 39px;
           letter-spacing: 1px;
         }
@@ -101,27 +100,110 @@
             color: #1598a5;
             text-align: left;
             padding: 3% 0px 0% 6%;
-  
+
         }
         .test-report{
           background-color: #ffffff;
-          color: #27959f;
-          box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);  
-          height: 150px;
+          color: #222222;
+          box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
+          min-height: 10vh;
           border-radius: 20px;
           text-align: left;
           padding: 3% 0px 5% 6%;
           margin: 0px 0px 3% 0%;
         }
+        .test-report-heading{
+            color: #27959f;
+        }
         .prescription-box{
           background-color: #ffffff;
-          color: #27959f;
-          box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);  
-          height: 350px;
+          color: #222222;
+          box-shadow: 0px 4px 15px 2px rgba(0, 0, 0, 0.14);
+          min-height: 50vh;
           border-radius: 20px;
           text-align: left;
           padding: 3% 0px 5% 6%;
           margin: 3% 0px 3% 0%;
+          overflow-x: auto;
+        }
+        .prescription-box-heading{
+          color: #27959f;
+        }
+        #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: auto;
+        }
+
+        #customers td, #customers th {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+        letter-spacing: 1px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #2497b6;
+        color: white;
+        }
+        .btn-class {
+        color: #ffffff;
+        text-transform: capitalize;
+        text-decoration: none;
+        background: #276cc1;
+        border: 1px solid #276cc1;
+        padding: 10px;
+        border-radius: 30px;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+        }
+        .btn-class:hover,.btn-class:focus{
+        border: 1px solid #ffffff;
+        background: #51a8c7;
+        color: #111111;
+        }
+        @media
+        only screen and (max-width: 600px) {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+        display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        }
+
+        tr { border: 1px solid #ccc; }
+
+        td {
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        }
+
+        td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        }
         }
     </style>
     <div class="container-fluid"  ng-controller="displayController">
@@ -166,22 +248,37 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <h4 class="information-heading">Information:</h4>
                     <div class="information-box">
-                        
+
                             <p>
                                 <strong>Email: </strong> {{profile.email}} <br>
                                 <strong>Mobile No: </strong> {{profile.mobile_number}} <br>
-                                <strong>Disease: </strong> Common Cold <br>
                             </p>
-                
+
                     </div>
                 </div>
             </div>
             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                 <div class="test-report">
-                    <h4><strong>Test Report:</strong></h4>
+                    <h4 class="test-report-heading"><strong>Most Visited Doctor:</strong></h4>
+                    <h3>{{docData.fname}} {{docData.lname}}</h3>
                 </div>
                 <div class="prescription-box">
-                    <h4><strong>Prescription:</strong></h4>
+                    <h4 class="prescription-box-heading"><strong>Recent Apoointments:</strong></h4>
+                    <table id="customers">
+                        <tr>
+                            <th>Doctor Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Disease</th>
+                        </tr>
+                        <tr ng-repeat="data in datas">
+                            <td>{{data.doct_key_id__first_name}} {{data.doct_key_id__last_name}}</td>
+                            <td>{{data.date_for_app}}</td>
+                            <td>{{data.time_for_app}}</td>
+                            <td>{{data.disease}}</td>
+
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

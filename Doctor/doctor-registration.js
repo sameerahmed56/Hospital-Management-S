@@ -16,11 +16,12 @@ myApp.controller("registrationController", function ($scope, $http) {
     $scope.gender = "Gender";
     $scope.password = null;
     $scope.age = "Age";
+    $scope.department = "Department";
     $scope.qualification = "Qualification";
     $scope.experience = "Experience";
 
 
-    $scope.postdata = function (firstname, lastname, mobilenumber, email, gender, password, age, qualification, experience) {
+    $scope.postdata = function (firstname, lastname, mobilenumber, email, gender, password, age, department, qualification, experience) {
 
         var data = {
             first_name: firstname,
@@ -30,14 +31,27 @@ myApp.controller("registrationController", function ($scope, $http) {
             gender: gender,
             password: password,
             age: age,
+            department: department,
             qualification: qualification,
-            previous_exp: experience
+            previous_exp: experience,
         }
-        console.log(data);
-        $http.post("http://9a65c1516c28.ngrok.io/doctor/register/", JSON.stringify(data))
-            .then(function (res) {
-                console.log(res);
-            }).catch
+        var a = onSubmit();
+        if( a == true){
+            console.log(data);
+            $http.post("https://d378b5057702.ngrok.io/doctor/register/", JSON.stringify(data))
+                .then(function (res) {
+                    console.log(res);
+                    console.log(res.data);
+                    if(res.data == "success"){
+                        document.getElementById('out_data').innerHTML = "You Have Successfully Registered! Need To Wait For Manager Apporval For Login";
+                    }
+
+                })
+        }
+        else{
+            console.log("not send");
+        }
+
     }
 });
 // ---
@@ -48,7 +62,7 @@ function validateFirstName(a, b) {
     var alphabet = /^[A-Za-z]+$/;
     if (name.match(alphabet)) {
         document.getElementById(b).innerHTML = "";
-        $("#first_name").css("border", "2px solid green");
+        $("#first_name").css("border", "1px solid green");
         return true;
     } else {
         document.getElementById(b).innerHTML = "Enter Valid Name";
@@ -61,7 +75,7 @@ function validateLastName(a, b) {
     var alphabet = /^[A-Za-z]+$/;
     if (name.match(alphabet)) {
         document.getElementById(b).innerHTML = "";
-        $("#last_name").css("border", "2px solid green");
+        $("#last_name").css("border", "1px solid green");
         return true;
     } else {
         document.getElementById(b).innerHTML = "Enter Valid Name";
@@ -84,7 +98,7 @@ function validateNumber(a, b) {
         $("#mobile_number").css("border", "2px solid red");
     }  else {
         document.getElementById(b).innerHTML = "";
-        $("#mobile_number").css("border", "2px solid green");
+        $("#mobile_number").css("border", "1px solid green");
         return true;
     }
 }
@@ -119,7 +133,7 @@ function validateEmail(a, b) {
             $("#email").css("border", "2px solid red");
         } else {
             document.getElementById(b).innerHTML = "";
-            $("#email").css("border", "2px solid green");
+            $("#email").css("border", "1px solid green");
             return true;
         }
     } else {
@@ -139,7 +153,7 @@ function validatePassword(a, b) {
         document.getElementById(b).innerHTML = "Password must be of 6 digits";
     } else {
         document.getElementById(b).innerHTML = "";
-        $("#password").css("border" , "2px solid green");
+        $("#password").css("border" , "1px solid green");
 
         return true;
     }
@@ -157,7 +171,7 @@ function validateCnfPassword(a, b) {
         $("#cnfpassword").css("border", "2px solid red");
     } else {
         document.getElementById(b).innerHTML = "";
-        $("#cnfpassword").css("border", "2px solid green");
+        $("#cnfpassword").css("border", "1px solid green");
         return true;
     }
 }
@@ -179,6 +193,17 @@ function validateGender(a, b) {
     } else {
         document.getElementById(b).innerHTML = "";
         console.log(gender);
+        return true;
+    }
+}
+function validateDepartment(a, b) {
+    var department = document.getElementById(a).value;
+    if (department == "Department") {
+        document.getElementById(b).innerHTML = "Enter Your Department";
+        console.log(department);
+    } else {
+        document.getElementById(b).innerHTML = "";
+        console.log(department);
         return true;
     }
 }
@@ -220,14 +245,17 @@ function onSubmit() {
     var h = validateQualification('qualification','qualificationerror');
     var i = validateExperience('experience','experienceerror')
     var j = validateGender('gender', 'gendererror');
-    if ((a == true) && (b == true) && (c == true) && (d == true) && (e == true) && (f == true) && (g == true) && (h == true) && (i == true) && (j == true)){
+    var k = validateDepartment('department', 'departmenterror')
+    if ((a == true) && (b == true) && (c == true) && (d == true) && (e == true) && (f == true) && (g == true) && (h == true) && (i == true) && (j == true) && (k == true)){
         // sendRegistrationData();
         console.log("RIGHT");
+        return true;
+
         // postdata(firstname, lastname, mobilenumber, email, gender, password, age, qualification, experience);
-        
-    } 
+
+    }
     else {
-        alert("Fill All Fields")
+        // alert("Fill All Fields")
         console.log("WRONG");
     }
 }

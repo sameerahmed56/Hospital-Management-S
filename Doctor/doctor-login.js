@@ -10,7 +10,7 @@
 //     },function(reason){
 //         $scope.error =  reason.data;
 //         $log.info(reason);
-    
+
 //     });
 // });
 var app = angular.module("myApp", []);
@@ -24,17 +24,33 @@ app.controller("loginController", function ($scope, $http) {
             email: email,
             password: password
         }
+        var a = validateFields();
         console.log(data);
-        $http.post("http://384a09a05a47.ngrok.io/doctor/login/", JSON.stringify(data))
-            .then(function (res) {
-                console.log(res);
-                console.log(res.data);
-                console.log(res.data[0]);
-                var docdata = JSON.stringify(res.data[0]);
-                console.log(docdata);
-                localStorage.setItem("docdata", docdata);
-                window.location.href = "doctor-portal.html";
-            })
+        if( a == true){
+            $http.post("https://d378b5057702.ngrok.io/doctor/login/", JSON.stringify(data))
+                .then(function (res) {
+                    console.log(res);
+                    console.log(res.data);
+                    if(res.data  == "not registerd"){
+                        document.getElementById('out_data').innerHTML = "You Have Not Registered Yet! Please Register To Continue <br> or Your Registration Has Yet Not Been Approved By Manager"
+                    }
+                    else if (res.data == "wrong password") {
+                        document.getElementById('out_data').innerHTML = "Wrong Password";
+                    }
+                    else{
+                    console.log(res.data.data_r);
+                    console.log(res.data.pending_appointment);
+                    var docdata = JSON.stringify(res.data.data_r[0]);
+                    console.log(docdata);
+                    localStorage.setItem("docdata", docdata);
+                    window.location.href = "doctor-portal.html";
+                    }
+                })
+        }
+        else{
+            console.log("Not Send");
+        }
+
     }
     // $http.get("url")
     // .then(function(response){
@@ -88,8 +104,9 @@ function validateFields() {
     if ((p == true) && (u == true)) {
         // validateAPI();
         console.log("right");
+        return true;
     } else {
-        alert("Fill alll Fields!")
+        // alert("Fill alll Fields!")
         console.log("wrong");
     }
 }

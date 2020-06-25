@@ -27,11 +27,10 @@
   <script src="patient-login.js"></script>
   <title>login</title>
 </head>
-<body>
+<body ng-app="myApp">
   <style>
     body{
-    background-image: linear-gradient(to right top, #b0b9dd, #d2aedc, #f7a0c1, #ff9c91, #f6a85d);
-    font-family: sans-serif;
+      background-image: linear-gradient(to right, #c3c98a, #ecbe93, #fcb8b5, #efbdda, #d0c9ef);
     }
     .wrap{
     box-sizing: border-box;
@@ -46,8 +45,8 @@
     padding: 0px;
     }
     .left-box{
-    padding: 0px;
-    background-color: #ba2458;
+    /* padding: 0px; */
+    /* background-color: #ba2458; */
     background-size: cover;
     background-repeat: no-repeat;
     border-bottom-left-radius: 20px;
@@ -57,24 +56,32 @@
       text-align: center;
       font-size: 24px;
       height: auto;
-      padding: 5% 0px;
-      background-color:whitesmoke;
-      border-top-right-radius: 20px;
+      padding: 2% 0px;
+      /* background-color:whitesmoke; */
+      /* border-top-right-radius: 20px; */
     }
     .routing-btn>a{
-      color: mediumvioletred;
-      padding: 4%;
+      color: #30388a;
+      padding: 0.5%;
     }
     .routing-btn>a:hover{
-      color: navy;
+      color: #d5275b;
+    }
+    #out_data{
+      text-align: center;
+      font-size: 25px;
+      color: red;
     }
   </style>
   <br>
-<br><br><br><br>
-<div class="container-fluid" ng-app="myApp">
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 routing-btn">
+  <a ui-sref="signupmessage({e:11, f:10})"><strong>SignUp</strong></a>
+  <a ui-sref="loginmessage({a:10, b:10})"><strong>LogIn</strong></a>
+</div>
+<div class="container-fluid" >
   <div class="row">
-    <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-    <div class="col-xl-8 col-lg-10 col-md-10 col-sm-10 col-10 wrap ">
+    <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-12"></div>
+    <div class="col-xl-8 col-lg-10 col-md-10 col-sm-10 col-12 wrap ">
       <div class="container-fluid">
         <div class="row">
           <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-3 left-box" id="left_box">
@@ -83,10 +90,7 @@
           <div class="col-xl-7 col-lg-7 co-md-7 col-sm-7 col-9 login-box">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 routing-btn">
-                  <a ui-sref="signupmessage({e:11, f:10})"><strong>SignUp</strong></a>
-                  <a ui-sref="loginmessage({a:10, b:10})"><strong>LogIn</strong></a>
-                </div>
+
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
                   <div class="ui-view">
 
@@ -99,12 +103,12 @@
       </div>
 
     </div>
-    <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
+    <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1 col-12"></div>
   </div>
 </div>
 <br>
 <br>
+    <div id="out_data"></div>
 <br>
 <br>
 </body>
