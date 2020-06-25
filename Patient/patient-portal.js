@@ -59,6 +59,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'allAppointmentController'
 
         })
+        .state('paymentmessage', {
+            url: '/pages/payment/:k/:l',
+            templateUrl: 'pages/payment-status.html',
+            controller: 'paymentController'
+
+        })
 
     $urlRouterProvider.otherwise('/');
 
@@ -171,6 +177,24 @@ myApp.controller('allAppointmentDisplayController', function ($scope, $http) {
         window.location.href ="get-report.html";
     }
 })
+
+myApp.controller('paymentDisplayController', function ($scope, $http) {
+    $scope.$on('$stateChangeSuccess', function () {
+        var data = {
+            id: patientJson.id
+        }
+        console.log(data);
+        $http.post("https://d378b5057702.ngrok.io/patient/appointment_history/", JSON.stringify(data))
+            .then(function (res) {
+                console.log(res.data);
+                $scope.datas = res.data;
+
+            })
+    });
+    $scope.getreport = function () {
+        window.location.href = "get-report.html";
+    }
+})
 // ---
 myApp.controller('signupController', function ($scope, $stateParams) {
     $scope.e = $stateParams.e,
@@ -191,4 +215,8 @@ myApp.controller('notificationController', function ($scope, $stateParams) {
 myApp.controller('allAppointmentController', function ($scope, $stateParams) {
     $scope.i = $stateParams.i,
         $scope.j = $stateParams.j
+})
+myApp.controller('paymentController', function ($scope, $stateParams) {
+    $scope.k = $stateParams.k,
+        $scope.l = $stateParams.l
 })
